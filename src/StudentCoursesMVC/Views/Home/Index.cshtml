@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>StudentCourses</h1>
+    <p class="lead">A simple ASP.NET MVC practice Web applications using Entity Framework, LocalDB and CSHTML.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Registrations &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Students</h2>
+        <p>
+            Lists all Students and their properties.
+        </p>
+        <p class="btn btn-default">@Html.ActionLink("Students", "Index", "Students")</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Courses</h2>
+        <p>Lists all avaliable Courses and properties.</p>
+        <p class="btn btn-default">@Html.ActionLink("Courses ", "Index", "Course") </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Registrations</h2>
+        <p>Enrolls Students in Courses and shows the Students registrations in Courses.</p>
+        <p class="btn btn-default">@Html.ActionLink("Registrations ", "Index", "Registration") </p>
+    </div>
+</div>
