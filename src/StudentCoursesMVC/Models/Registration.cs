@@ -2,9 +2,9 @@
 namespace StudentCoursesMVC.Models
 {
     /// <summary>
-    /// The Student POCO
+    /// The Course POCO
     /// </summary>
-    public class Student
+    public class Registration
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -15,27 +15,27 @@ namespace StudentCoursesMVC.Models
         public int ID { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the student.
         /// </summary>
         /// <value>
-        /// The Students First name.
+        /// The student.
         /// </value>
-        public string FirstName { get; set; }
+        public Student student { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// Gets or sets the course.
         /// </summary>
         /// <value>
-        /// The Students Last name.
+        /// The course.
         /// </value>
-        public string LastName { get; set; }
+        public Course course { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance has a registration.
+        /// Gets or sets the register key.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if this instance is registrated; otherwise, <c>false</c>.
+        /// The generated register key.
         /// </value>
-        public bool IsRegistrated { get; set; }
+        public string registerKey { get; set; }
     }
 }

@@ -22,8 +22,10 @@ namespace StudentCoursesMVC.Services
 
         public List<Student> GetAll()
         {
+
             //return View(db.Students.ToList());
-            return db.Students.ToList();
+            var lista =  db.Students.ToList();
+            return lista;
         }
 
         // GET: Students/Details/5

@@ -184,6 +184,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Registration.cs" />
+    <Compile Include="Models\CourseDBContext.cs" />
+    <Compile Include="Models\RegistrationDBContext.cs" />
+    <Compile Include="Models\StudentDBContext.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
