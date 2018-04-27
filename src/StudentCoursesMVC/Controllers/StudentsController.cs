@@ -13,20 +13,19 @@ namespace StudentCoursesMVC.Controllers
 {
     public class StudentsController : Controller
     {
+        //Services from Unity Dependency Injection
+        private readonly IStudentService studentService;
 
-        //TODO: Dependency Injection
-        StudentsService studentsService;
-        
-        //Constructor
-        public StudentsController()
+        // Constructor with Unity Dependency Injection
+        public StudentsController(IStudentService StudentService)
         {
-            this.studentsService = new StudentsService();
+            studentService = StudentService;
         }
 
         // GET: Students
         public ActionResult Index()
         {
-            return studentsService.Index();
+            return View(studentService.GetAll());
         }
 
         // GET: Students/Details/5
