@@ -10,10 +10,5 @@ namespace StudentCoursesMVC.Models
     {
         public DbSet<Student> Students { get; set; }
 
-        public StudentDBContext()
-        {
-
-        }
-
     }
 }

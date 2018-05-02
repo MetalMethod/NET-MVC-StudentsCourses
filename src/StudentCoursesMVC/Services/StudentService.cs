@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StudentCoursesMVC.Models;
+using StudentCoursesMVC.Models.EntityModels;
 
 namespace StudentCoursesMVC.Services
 {
@@ -14,13 +15,13 @@ namespace StudentCoursesMVC.Services
     public class StudentService : IStudentService
     {
 
-        private StudentDBContext db = new StudentDBContext();
+        private EntityModel db = new EntityModel();
 
         public StudentService()
         {
         }
 
-        public List<Student> GetAll()
+        public List<Students> GetAll()
         {
 
             //return View(db.Students.ToList());
@@ -29,14 +30,14 @@ namespace StudentCoursesMVC.Services
         }
 
         // GET: Students/Details/5
-        public Student GetSingle(int? id)
+        public Students GetSingle(int? id)
         {
             if (id == null)
             {
                 //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 return null;
             }
-            Student student = db.Students.Find(id);
+            Students student = db.Students.Find(id);
             if (student == null)
             {
                 //return HttpNotFound();
@@ -50,7 +51,7 @@ namespace StudentCoursesMVC.Services
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Student Create([Bind(Include = "ID,Name")] Student student)
+        public Students Create([Bind(Include = "ID,Name")] Students student)
         {
             if (student != null)
             {
@@ -63,14 +64,14 @@ namespace StudentCoursesMVC.Services
         }
 
         // GET: Students/Edit/5
-        public Student Edit(int? id)
+        public Students Edit(int? id)
         {
             if (id == null)
             {
                 //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 return null;
             }
-            Student student = db.Students.Find(id);
+            Students student = db.Students.Find(id);
             if (student == null)
             {
                 //return HttpNotFound();
@@ -84,7 +85,7 @@ namespace StudentCoursesMVC.Services
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public Student Edit([Bind(Include = "ID,Name")] Student student)
+        public Students Edit([Bind(Include = "ID,Name")] Students student)
         {
             //if (ModelState.IsValid)
             if (student != null)
@@ -97,14 +98,14 @@ namespace StudentCoursesMVC.Services
         }
 
         // GET: Students/Delete/5
-        public Student Delete(int? id)
+        public Students Delete(int? id)
         {
             if (id == null)
             {
                 //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 return null;
             }
-            Student student = db.Students.Find(id);
+            Students student = db.Students.Find(id);
             if (student == null)
             {
                 //return HttpNotFound();
@@ -119,7 +120,7 @@ namespace StudentCoursesMVC.Services
         //public ActionResult DeleteConfirmed(int id)
         public void DeleteConfirmed(int id)
         {
-            Student student = db.Students.Find(id);
+            Students student = db.Students.Find(id);
             db.Students.Remove(student);
             db.SaveChanges();
             //return RedirectToAction("Index");
