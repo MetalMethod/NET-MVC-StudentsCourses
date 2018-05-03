@@ -24,6 +24,13 @@ namespace StudentCourses.Test
         // STUDENT REPOSITORY TESTS
 
         [TestMethod]
+        public void IsStudentRepositoryGetAllCorrectly()
+        {
+            var result = studentRepository.GetAll();
+            Assert.AreEqual(result.Count(), 9);
+        }
+
+        [TestMethod]
         public void IsStudentRepositoryInitializedWithValidNumberOfData()
         {
             //Test if the database is correctly created
@@ -53,6 +60,13 @@ namespace StudentCourses.Test
         }
 
         [TestMethod]
+        public void IsStudentRepositoryFindByIdCorrectly()
+        {
+            var findObject = studentRepository.FindById(2);
+            Assert.AreEqual(findObject.FirstName, "Paul");
+        }
+
+        [TestMethod]
         public void IsStudentRepositoryEditingStudent()
         {
             Student studentToEdit = new Student
@@ -68,13 +82,22 @@ namespace StudentCourses.Test
         }
 
         [TestMethod]
-        public void IsStudentRepositoryFindByIdCorrectly()
+        public void IsStudentRepositoryRemoveCorrectly()
         {
-            var findObject = studentRepository.FindById(2);
-            Assert.AreEqual(findObject.FirstName, "Paul");
+            var initalCount = studentRepository.GetAll().Count();
+            studentRepository.Remove(9);
+            var removedCount = studentRepository.GetAll().Count();
+            Assert.AreNotEqual(initalCount, removedCount);
         }
-        
+
         // COURSE REPOSITORY TESTS
+
+        [TestMethod]
+        public void IsCourseRepositoryGetAllCorrectly()
+        {
+            var result = courseRepository.GetAll();
+            Assert.AreEqual(result.Count(), 8);
+        }
 
         [TestMethod]
         public void IsCourseRepositoryInitializedWithValidNumberOfData()
@@ -105,6 +128,13 @@ namespace StudentCourses.Test
         }
 
         [TestMethod]
+        public void IsCourseRepositoryFindByIdCorrectly()
+        {
+            var findObject = courseRepository.FindById(4);
+            Assert.AreEqual(findObject.Name, "NET MVC");
+        }
+
+        [TestMethod]
         public void IsCourseRepositoryEditingCourse()
         {
             Course courseToEdit = new Course
@@ -114,15 +144,17 @@ namespace StudentCourses.Test
             };
 
             courseRepository.Edit(courseToEdit);
-            var result = studentRepository.FindById(8);
+            var result = courseRepository.FindById(8);
             Assert.AreEqual(courseToEdit.Id, result.Id);
         }
 
         [TestMethod]
-        public void IsCourseRepositoryFindByIdCorrectly()
+        public void IsCourseRepositoryRemoveCorrectly()
         {
-            var findObject = courseRepository.FindById(4);
-            Assert.AreEqual(findObject.Name, "NET MVC");
+            var initalCount = courseRepository.GetAll().Count();
+            courseRepository.Remove(8);
+            var removedCount = courseRepository.GetAll().Count();
+            Assert.AreNotEqual(initalCount, removedCount);
         }
 
     }
