@@ -4,16 +4,10 @@ using StudentCourses.Infrastructure.DataContexts;
 
 namespace StudentCourses.Infrastructure.DatabaseInitializers
 {
-    public class StudentDataInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
+    public class StudentCoursesDataInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
     {
         protected override void Seed(DataBaseContext context)
         {
-            foreach(Student std in context.Students)
-            {
-                context.Students.Remove(std);
-            }
-            context.SaveChanges();
-
             context.Students.Add(new Student { FirstName = "Jeff", LastName = "Loomis" });
             context.Students.Add(new Student { FirstName = "Paul", LastName = "Gilbert" });
             context.Students.Add(new Student { FirstName = "Ola", LastName = "Strandberg" });
@@ -23,9 +17,15 @@ namespace StudentCourses.Infrastructure.DatabaseInitializers
             context.Students.Add(new Student { FirstName = "Marty", LastName = "Friedman" });
             context.Students.Add(new Student { FirstName = "Manny", LastName = "Clark" });
 
+            context.Courses.Add(new Course { Name = "Drawing 101" });
+            context.Courses.Add(new Course { Name = "Mathematics 101" });
+            context.Courses.Add(new Course { Name = "Csharp Basics" });
+            context.Courses.Add(new Course { Name = "NET MVC" });
+            context.Courses.Add(new Course { Name = "SQL Server 101" });
+            context.Courses.Add(new Course { Name = "Music Theory" });
+
             context.SaveChanges();
             base.Seed(context);
         }
-
     }
 }
