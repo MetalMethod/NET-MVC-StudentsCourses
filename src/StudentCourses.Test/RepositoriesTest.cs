@@ -27,7 +27,7 @@ namespace StudentCourses.Test
         public void IsStudentRepositoryGetAllCorrectly()
         {
             var result = studentRepository.GetAll();
-            Assert.AreEqual(result.Count(), 9);
+            Assert.AreEqual(result.Count(), 8);
         }
 
         [TestMethod]
@@ -96,7 +96,7 @@ namespace StudentCourses.Test
         public void IsCourseRepositoryGetAllCorrectly()
         {
             var result = courseRepository.GetAll();
-            Assert.AreEqual(result.Count(), 8);
+            Assert.AreEqual(result.Count(), 6);
         }
 
         [TestMethod]
@@ -139,12 +139,12 @@ namespace StudentCourses.Test
         {
             Course courseToEdit = new Course
             {
-                Id = 8,
+                Id = 7,
                 Name = "Canvas drawing"
             };
 
             courseRepository.Edit(courseToEdit);
-            var result = courseRepository.FindById(8);
+            var result = courseRepository.FindById(7);
             Assert.AreEqual(courseToEdit.Id, result.Id);
         }
 
@@ -152,7 +152,7 @@ namespace StudentCourses.Test
         public void IsCourseRepositoryRemoveCorrectly()
         {
             var initalCount = courseRepository.GetAll().Count();
-            courseRepository.Remove(8);
+            courseRepository.Remove(7);
             var removedCount = courseRepository.GetAll().Count();
             Assert.AreNotEqual(initalCount, removedCount);
         }
