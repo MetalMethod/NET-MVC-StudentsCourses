@@ -21,6 +21,8 @@ namespace StudentCourses.Test
             courseRepository = new CourseRepository();
         }
 
+        // STUDENT REPOSITORY TESTS
+
         [TestMethod]
         public void IsStudentRepositoryInitializedWithValidNumberOfData()
         {
@@ -66,6 +68,15 @@ namespace StudentCourses.Test
         }
 
         [TestMethod]
+        public void IsStudentRepositoryFindByIdCorrectly()
+        {
+            var findObject = studentRepository.FindById(2);
+            Assert.AreEqual(findObject.FirstName, "Paul");
+        }
+        
+        // COURSE REPOSITORY TESTS
+
+        [TestMethod]
         public void IsCourseRepositoryInitializedWithValidNumberOfData()
         {
             // Test if the database is correctly created
@@ -105,6 +116,13 @@ namespace StudentCourses.Test
             courseRepository.Edit(courseToEdit);
             var result = studentRepository.FindById(8);
             Assert.AreEqual(courseToEdit.Id, result.Id);
+        }
+
+        [TestMethod]
+        public void IsCourseRepositoryFindByIdCorrectly()
+        {
+            var findObject = courseRepository.FindById(4);
+            Assert.AreEqual(findObject.Name, "NET MVC");
         }
 
     }
