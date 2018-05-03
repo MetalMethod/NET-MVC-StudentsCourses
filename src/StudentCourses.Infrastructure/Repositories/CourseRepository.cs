@@ -34,6 +34,7 @@ namespace StudentCourses.Infrastructure.Repositories
         public void Edit(Course course)
         {
             context.Entry(course).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
         }
 
         /// <summary>

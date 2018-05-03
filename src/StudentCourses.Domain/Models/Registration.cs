@@ -3,7 +3,7 @@
 namespace StudentCourses.Domain.Models
 {
     /// <summary>
-    /// The Course POCO
+    /// The Registration POCO
     /// </summary>
     public class Registration
     {

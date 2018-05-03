@@ -51,6 +51,21 @@ namespace StudentCourses.Test
         }
 
         [TestMethod]
+        public void IsStudentRepositoryEditingStudent()
+        {
+            Student studentToEdit = new Student
+            {
+                Id = 9,
+                FirstName = "Steve",
+                LastName = "Harris"
+            };
+
+            studentRepository.Edit(studentToEdit);
+            var result = studentRepository.FindById(9);
+            Assert.AreEqual(studentToEdit.Id, result.Id);
+        }
+
+        [TestMethod]
         public void IsCourseRepositoryInitializedWithValidNumberOfData()
         {
             // Test if the database is correctly created
@@ -77,5 +92,20 @@ namespace StudentCourses.Test
             var numberOfRecords = result.ToList().Count;
             Assert.AreEqual(7, numberOfRecords);
         }
+
+        [TestMethod]
+        public void IsCourseRepositoryEditingCourse()
+        {
+            Course courseToEdit = new Course
+            {
+                Id = 8,
+                Name = "Canvas drawing"
+            };
+
+            courseRepository.Edit(courseToEdit);
+            var result = studentRepository.FindById(8);
+            Assert.AreEqual(courseToEdit.Id, result.Id);
+        }
+
     }
 }
