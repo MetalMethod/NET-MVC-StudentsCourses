@@ -15,7 +15,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <summary>
         /// The database context object.
         /// </summary>
-        private DataBaseContext context = new DataBaseContext();
+        private DataBaseContext _context = new DataBaseContext();
 
         /// <summary>
         /// Adds the specified course.
@@ -23,8 +23,8 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="course">The course.</param>
         public void Add(Course course)
         {
-            context.Courses.Add(course);
-            context.SaveChanges();
+            _context.Courses.Add(course);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="course">The course.</param>
         public void Edit(Course course)
         {
-            context.Entry(course).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
+            _context.Entry(course).State = System.Data.Entity.EntityState.Modified;
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public void Remove(int Id)
         {
-            Course course = context.Courses.Find(Id);
-            context.Courses.Remove(course);
-            context.SaveChanges();
+            Course course = _context.Courses.Find(Id);
+            _context.Courses.Remove(course);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// </summary>
         public IEnumerable<Course> GetAll()
         {
-            return context.Courses;
+            return _context.Courses;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public Course FindById(int Id)
         {
-            var result = (from item in context.Courses where item.Id == Id select item).FirstOrDefault();
+            var result = (from item in _context.Courses where item.Id == Id select item).FirstOrDefault();
             return result;
         }
     }

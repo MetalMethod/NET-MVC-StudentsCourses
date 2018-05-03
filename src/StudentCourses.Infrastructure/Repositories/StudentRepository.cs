@@ -15,7 +15,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <summary>
         /// The database context object.
         /// </summary>
-        private DataBaseContext context = new DataBaseContext();
+        private DataBaseContext _context = new DataBaseContext();
 
         /// <summary>
         /// Adds the specified student.
@@ -23,8 +23,8 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="student">The student.</param>
         public void Add(Student student)
         {
-            context.Students.Add(student);
-            context.SaveChanges();
+            _context.Students.Add(student);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -33,8 +33,8 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="student">The student.</param>
         public void Edit(Student student)
         {
-            context.Entry(student).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
+            _context.Entry(student).State = System.Data.Entity.EntityState.Modified;
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public void Remove(int Id)
         {
-            Student student = context.Students.Find(Id);
-            context.Students.Remove(student);
-            context.SaveChanges();
+            Student student = _context.Students.Find(Id);
+            _context.Students.Remove(student);
+            _context.SaveChanges();
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// </summary>
         public IEnumerable<Student> GetAll()
         {
-            return context.Students;
+            return _context.Students;
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public Student FindById(int Id)
         {
-            var result = (from item in context.Students where item.Id == Id select item).FirstOrDefault();
+            var result = (from item in _context.Students where item.Id == Id select item).FirstOrDefault();
             return result;
         }
     }

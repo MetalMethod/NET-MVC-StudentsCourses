@@ -15,14 +15,7 @@ namespace StudentCourses.MVC.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Developed in Visual Studio 2017, as trainning for .NET entrepise applications development.";
 
             return View();
         }

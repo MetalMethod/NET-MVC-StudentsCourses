@@ -1,34 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using StudentCourses.Domain.Models;
-using StudentCourses.Infrastructure.DataContexts;
+using StudentCourses.Domain.Interfaces;
+using StudentCourses.Infrastructure.Repositories;
 
 namespace StudentCourses.MVC.Controllers
 {
     public class CoursesController : Controller
     {
-        private DataBaseContext db = new DataBaseContext();
+        private IRepository<Course> _db = new CourseRepository();
 
         // GET: Courses
         public ActionResult Index()
         {
-            return View(db.Courses.ToList());
+            return View(_db.GetAll());
         }
 
-        // GET: Courses/Details/5
-        public ActionResult Details(int? id)
+        // GET: Courses/Details/Id
+        public ActionResult Details(int Id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course course = db.Courses.Find(id);
+            Course course = _db.FindById(Id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -51,22 +41,17 @@ namespace StudentCourses.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Courses.Add(course);
-                db.SaveChanges();
+                _db.Add(course);
                 return RedirectToAction("Index");
             }
 
             return View(course);
         }
 
-        // GET: Courses/Edit/5
-        public ActionResult Edit(int? id)
+        // GET: Courses/Edit/Id
+        public ActionResult Edit(int Id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course course = db.Courses.Find(id);
+            Course course = _db.FindById(Id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -74,7 +59,7 @@ namespace StudentCourses.MVC.Controllers
             return View(course);
         }
 
-        // POST: Courses/Edit/5
+        // POST: Courses/Edit/Id
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -83,21 +68,16 @@ namespace StudentCourses.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(course).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Edit(course);
                 return RedirectToAction("Index");
             }
             return View(course);
         }
 
-        // GET: Courses/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: Courses/Delete/Id
+        public ActionResult Delete(int Id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Course course = db.Courses.Find(id);
+            Course course = _db.FindById(Id);
             if (course == null)
             {
                 return HttpNotFound();
@@ -105,24 +85,14 @@ namespace StudentCourses.MVC.Controllers
             return View(course);
         }
 
-        // POST: Courses/Delete/5
+        // POST: Courses/Delete/Id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int Id)
         {
-            Course course = db.Courses.Find(id);
-            db.Courses.Remove(course);
-            db.SaveChanges();
+            _db.Remove(Id);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
