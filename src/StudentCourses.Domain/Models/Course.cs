@@ -1,5 +1,6 @@
-﻿
-namespace StudentCoursesMVC.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StudentCourses.Domain.Models
 {
     /// <summary>
     /// The Course POCO
@@ -12,7 +13,8 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The identifier.
         /// </value>
-        public int ID { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -20,6 +22,8 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The Course name.
         /// </value>
+        [Required]
+        [MaxLength(100)]
         public string Name { get; set; }
     }
 }

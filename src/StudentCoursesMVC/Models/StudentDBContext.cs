@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 
-namespace StudentCoursesMVC.Models
+namespace StudentCoursesMVC.Models.EntityModels
 {
     public class StudentDBContext : DbContext
     {
-        public DbSet<Student> Students { get; set; }
+        public DbSet<Students> Students { get; set; }
 
     }
 }

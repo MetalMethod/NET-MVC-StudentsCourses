@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using StudentCoursesMVC.Models;
+using StudentCoursesMVC.Models.EntityModels;
 using StudentCoursesMVC.Services;
 
 namespace StudentCoursesMVC.Controllers
@@ -43,7 +44,7 @@ namespace StudentCoursesMVC.Controllers
         // POST: Students/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Student student)
+        public ActionResult Create([Bind(Include = "ID,Name")] Students student)
         {
             return View(student);
         }
@@ -57,7 +58,7 @@ namespace StudentCoursesMVC.Controllers
         // POST: Students/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Student student)
+        public ActionResult Edit([Bind(Include = "ID,Name")] Students student)
         {
             return View(student);
         }

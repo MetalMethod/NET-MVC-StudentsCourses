@@ -1,5 +1,6 @@
-﻿
-namespace StudentCoursesMVC.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StudentCourses.Domain.Models
 {
     /// <summary>
     /// The Student POCO
@@ -12,7 +13,8 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The identifier.
         /// </value>
-        public int ID { get; set; }
+        [Key]
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -20,6 +22,8 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The Students First name.
         /// </value>
+        [Required]
+        [MaxLength(50)]
         public string FirstName { get; set; }
 
         /// <summary>
@@ -28,14 +32,8 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The Students Last name.
         /// </value>
+        [Required]
+        [MaxLength(50)]
         public string LastName { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance has a registration.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is registrated; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsRegistrated { get; set; }
     }
 }

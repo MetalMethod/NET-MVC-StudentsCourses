@@ -1,5 +1,6 @@
-﻿
-namespace StudentCoursesMVC.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace StudentCourses.Domain.Models
 {
     /// <summary>
     /// The Course POCO
@@ -12,6 +13,7 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The identifier.
         /// </value>
+        [Key]
         public int ID { get; set; }
 
         /// <summary>
@@ -20,6 +22,7 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The student.
         /// </value>
+        [Required]
         public Student student { get; set; }
 
         /// <summary>
@@ -28,6 +31,7 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The course.
         /// </value>
+        [Required]
         public Course course { get; set; }
 
         /// <summary>
@@ -36,6 +40,7 @@ namespace StudentCoursesMVC.Models
         /// <value>
         /// The generated register key.
         /// </value>
+        [Required]
         public string registerKey { get; set; }
     }
 }
