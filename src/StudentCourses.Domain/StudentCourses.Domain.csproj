@@ -41,9 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IRegistrationRepository.cs" />
-    <Compile Include="Interfaces\ICourseRepository.cs" />
-    <Compile Include="Interfaces\IStudentRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IModel.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\Student.cs" />

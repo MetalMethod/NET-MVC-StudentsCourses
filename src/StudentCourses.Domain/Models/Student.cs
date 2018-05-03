@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using StudentCourses.Domain.Interfaces;
 
 namespace StudentCourses.Domain.Models
 {
     /// <summary>
     /// The Student POCO
     /// </summary>
-    public class Student
+    public class Student : IModel
     {
         /// <summary>
         /// Gets or sets the identifier.

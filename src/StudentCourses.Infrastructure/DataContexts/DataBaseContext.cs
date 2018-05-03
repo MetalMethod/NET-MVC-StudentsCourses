@@ -15,5 +15,13 @@ namespace StudentCourses.Infrastructure.DataContexts
         public DbSet<Course> Courses { get; set; }
         public DbSet<Registration> Registrations { get; set; }
 
+        //relations
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Registration>().HasMany(registration => registration.Student).WithMany()
+
+        //}
+       
     }
 }

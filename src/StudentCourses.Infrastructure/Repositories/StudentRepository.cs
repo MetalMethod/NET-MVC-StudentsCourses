@@ -9,8 +9,8 @@ namespace StudentCourses.Infrastructure.Repositories
     /// <summary>
     /// This is the implementation of the repository for the Student entity
     /// </summary>
-    /// <seealso cref="StudentCourses.Domain.Interfaces.IStudentRepository" />
-    public class StudentRepository : IStudentRepository
+    /// <seealso cref="StudentCourses.Domain.Interfaces.IRepository<T>
+    public class StudentRepository : IRepository<Student>
     {
         /// <summary>
         /// The database context object.
