@@ -4,8 +4,17 @@ using StudentCourses.Infrastructure.DataContexts;
 
 namespace StudentCourses.Infrastructure.DatabaseInitializers
 {
+    /// <summary>
+    /// This class is used by the UnitTest to verify if the database is created and populated correctly.
+    /// Must run tests once to initialize the database.
+    /// </summary>
+    /// <seealso cref="System.Data.Entity.DropCreateDatabaseIfModelChanges{StudentCourses.Infrastructure.DataContexts.DataBaseContext}" />
     public class StudentCoursesDataInitializer : DropCreateDatabaseIfModelChanges<DataBaseContext>
     {
+        /// <summary>
+        /// A method that should be overridden to actually add data to the context for seeding.
+        /// </summary>
+        /// <param name="context">The context to seed.</param>
         protected override void Seed(DataBaseContext context)
         {
             context.Students.Add(new Student { FirstName = "Jeff", LastName = "Loomis" });

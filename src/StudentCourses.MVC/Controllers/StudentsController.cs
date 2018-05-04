@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using StudentCourses.Domain.Models;
-using StudentCourses.Domain.Interfaces;
 using StudentCourses.Infrastructure.Services.StudentService;
 
 namespace StudentCourses.MVC.Controllers
