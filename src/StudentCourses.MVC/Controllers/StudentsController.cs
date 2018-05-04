@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 using StudentCourses.Domain.Models;
-using StudentCourses.Infrastructure.Services.StudentService;
+using StudentCourses.Domain.Interfaces;
 
 namespace StudentCourses.MVC.Controllers
 {
@@ -13,7 +13,17 @@ namespace StudentCourses.MVC.Controllers
         /// <summary>
         /// The student service instance.
         /// </summary>
-        private StudentService studentService = new StudentService();
+        private IRepositoryService<Student> studentService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StudentsController"/> class.
+        /// Using Unity Dependency Injection
+        /// </summary>
+        /// <param name="studentService">The student service.</param>
+        public StudentsController(IRepositoryService<Student> studentService)
+        {
+            this.studentService = studentService;
+        }
 
         /// GET: Students
         public ActionResult Index()
@@ -57,7 +67,7 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Students/Edit/Id
         public ActionResult Edit(int Id)
         {
-            Student student = studentService.StudentToEdit(Id);
+            Student student = studentService.ToEdit(Id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -83,7 +93,7 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Students/Delete/Id
         public ActionResult Delete(int Id)
         {
-            Student student = studentService.StudentToDelete(Id);
+            Student student = studentService.ToDelete(Id);
             if (student == null)
             {
                 return HttpNotFound();

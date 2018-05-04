@@ -8,7 +8,7 @@ namespace StudentCourses.Infrastructure.Services.StudentService
     /// <summary>
     /// Service class for Student entity, containing Repositories Reference and Business Logic if needed.
     /// </summary>
-    public class StudentService
+    public class StudentService : IRepositoryService<Student>
     {
         /// <summary>
         /// The student repository instance.
@@ -50,7 +50,7 @@ namespace StudentCourses.Infrastructure.Services.StudentService
         /// </summary>
         /// <param name="Id">The identifier.</param>
         /// <returns></returns>
-        public Student StudentToEdit(int Id)
+        public Student ToEdit(int Id)
         {
             return studentRepository.FindById(Id);
         }
@@ -71,7 +71,7 @@ namespace StudentCourses.Infrastructure.Services.StudentService
         /// </summary>
         /// <param name="Id">The identifier.</param>
         /// <returns></returns>
-        public Student StudentToDelete(int Id)
+        public Student ToDelete(int Id)
         {
             return studentRepository.FindById(Id);
         }
