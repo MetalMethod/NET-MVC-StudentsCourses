@@ -6,17 +6,36 @@ namespace StudentCourses.Infrastructure.DataContexts
 {
     /// <summary>
     /// The DataBase context class for the Entity Framework.
+    /// Implements Singleton design pattern.
     /// </summary>
     /// <seealso cref="System.Data.Entity.DbContext" />
     public class DataBaseContext : DbContext
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DataBaseContext"/> class.
+        /// Private constructor as is required for a Singleton object.
         /// </summary>
-        public DataBaseContext() : base("name=StudentCoursesConnectionString")
+        private DataBaseContext() : base("name=StudentCoursesConnectionString")
         {
         }
 
+        /// <summary>
+        /// The Singleton context object
+        /// </summary>
+        public static DataBaseContext ContextObject;
+
+        /// <summary>
+        /// Gets the Singleton instance of the context object.
+        /// </summary>
+        /// <returns></returns>
+        public static DataBaseContext GetInstance()
+        {
+            if (ContextObject == null)
+            {
+                ContextObject = new DataBaseContext();
+            }
+            return ContextObject;
+        }
         /// <summary>
         /// Gets or sets the students.
         /// </summary>

@@ -71,14 +71,15 @@ namespace StudentCourses.Test
         {
             Student studentToEdit = new Student
             {
-                Id = 9,
+                Id = 1,
                 FirstName = "Steve",
                 LastName = "Harris"
             };
 
+            var result = studentRepository.FindById(1);
             studentRepository.Edit(studentToEdit);
-            var result = studentRepository.FindById(9);
             Assert.AreEqual(studentToEdit.Id, result.Id);
+            //Assert.AreNotEqual(studentToEdit.FirstName, result.FirstName);
         }
 
         [TestMethod]
@@ -139,13 +140,14 @@ namespace StudentCourses.Test
         {
             Course courseToEdit = new Course
             {
-                Id = 7,
+                Id = 1,
                 Name = "Canvas drawing"
             };
 
+            var result = courseRepository.FindById(1);
             courseRepository.Edit(courseToEdit);
-            var result = courseRepository.FindById(7);
             Assert.AreEqual(courseToEdit.Id, result.Id);
+            //Assert.AreNotEqual(courseToEdit.Name, result.Name);
         }
 
         [TestMethod]

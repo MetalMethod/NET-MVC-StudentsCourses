@@ -14,8 +14,17 @@ namespace StudentCourses.Infrastructure.Repositories
     {
         /// <summary>
         /// The database context object.
+        /// Retrieved from DataContext Singleton
         /// </summary>
-        private DataBaseContext _context = new DataBaseContext();
+        private DataBaseContext _context;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CourseRepository"/> class.
+        /// </summary>
+        public CourseRepository()
+        {
+            this._context = DataBaseContext.GetInstance();
+        }
 
         /// <summary>
         /// Adds the specified course.
@@ -31,9 +40,10 @@ namespace StudentCourses.Infrastructure.Repositories
         /// Edits the specified course.
         /// </summary>
         /// <param name="course">The course.</param>
-        public void Edit(Course course)
+        public void Edit(Course courseToEdit)
         {
-            _context.Entry(course).State = System.Data.Entity.EntityState.Modified;
+            var currentCourse = FindById(courseToEdit.Id);
+            _context.Entry(currentCourse).CurrentValues.SetValues(courseToEdit);
             _context.SaveChanges();
         }
 
