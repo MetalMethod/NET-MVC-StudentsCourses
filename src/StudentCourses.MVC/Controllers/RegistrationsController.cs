@@ -79,7 +79,14 @@ namespace StudentCourses.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                registrationService.Add(registration);
+                Registration registrationToAdd = new Registration
+                {
+                    Student = registration.Student,
+                    Course = registration.Course,
+                    RegisterKey = "234j23g4234k"
+                };
+
+                registrationService.Add(registrationToAdd);
                 return RedirectToAction("Index");
             }
 
