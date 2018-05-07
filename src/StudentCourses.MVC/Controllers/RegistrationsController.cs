@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
 using StudentCourses.Infrastructure.DataContexts;
+using StudentCourses.MVC.ViewModels;
 
 namespace StudentCourses.MVC.Controllers
 {
@@ -22,15 +23,24 @@ namespace StudentCourses.MVC.Controllers
         /// The registration service instance
         /// </summary>
         private IRepositoryService<Registration> registrationService;
+        private IRepositoryService<Student> studentService;
+        private IRepositoryService<Course> courseService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegistrationsController"/> class.
         /// Using Unity Dependency Injection
         /// </summary>
         /// <param name="registrationService">The registration service.</param>
-        public RegistrationsController(IRepositoryService<Registration> registrationService)
+        public RegistrationsController(
+            IRepositoryService<Registration> registrationService,
+            IRepositoryService<Student> studentService,
+            IRepositoryService<Course> courseService
+
+            )
         {
             this.registrationService = registrationService;
+            this.studentService = studentService;
+            this.courseService = courseService;
         }
 
         /// GET: Registrations
@@ -53,7 +63,11 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations/Create
         public ActionResult Create()
         {
-            return View();
+            RegistrationViewModel registrationViewModel = new RegistrationViewModel();
+            registrationViewModel.AvaliableStudents = studentService.GetAll().ToList();
+            registrationViewModel.AvaliableCourses = courseService.GetAll().ToList();
+
+            return View(registrationViewModel);
         }
 
         /// POST: Registrations/Create
