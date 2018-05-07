@@ -84,5 +84,10 @@ namespace StudentCourses.Infrastructure.Services.RegistrationService
         {
             registrationRepository.Remove(Id);
         }
+
+        public Registration FindById(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

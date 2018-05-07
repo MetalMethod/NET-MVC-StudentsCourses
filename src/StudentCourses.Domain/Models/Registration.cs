@@ -23,7 +23,6 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The student.
         /// </value>
-        [Required]
         public Student Student { get; set; }
 
         /// <summary>
@@ -32,7 +31,6 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The course.
         /// </value>
-        [Required]
         public Course Course { get; set; }
 
         /// <summary>
@@ -41,7 +39,6 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The generated register key.
         /// </value>
-        [Required]
         public string RegisterKey { get; set; }
     }
 }

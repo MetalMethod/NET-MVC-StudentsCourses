@@ -33,6 +33,13 @@ namespace StudentCourses.Infrastructure.DatabaseInitializers
             context.Courses.Add(new Course { Name = "SQL Server 101" });
             context.Courses.Add(new Course { Name = "Music Theory" });
 
+            context.Registrations.Add(new Registration
+            {
+                Student = context.Students.Find(1),
+                Course = context.Courses.Find(2),
+                RegisterKey = "1111aaaa"
+            });
+                        
             context.SaveChanges();
             base.Seed(context);
         }

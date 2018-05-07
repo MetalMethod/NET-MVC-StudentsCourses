@@ -26,6 +26,8 @@ namespace StudentCourses.MVC.Controllers
         private IRepositoryService<Student> studentService;
         private IRepositoryService<Course> courseService;
 
+        public RegistrationViewModel registrationViewModel;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="RegistrationsController"/> class.
         /// Using Unity Dependency Injection
@@ -41,12 +43,16 @@ namespace StudentCourses.MVC.Controllers
             this.registrationService = registrationService;
             this.studentService = studentService;
             this.courseService = courseService;
+
+            this.registrationViewModel = new RegistrationViewModel();
         }
 
         /// GET: Registrations
         public ActionResult Index()
         {
-            return View(registrationService.GetAll());
+            registrationViewModel.CurrentRegistrations = registrationService.GetAll().ToList();
+
+            return View(registrationViewModel);
         }
 
         /// GET: Registrations/Details/5
@@ -63,10 +69,9 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations/Create
         public ActionResult Create()
         {
-            RegistrationViewModel registrationViewModel = new RegistrationViewModel();
             registrationViewModel.AvaliableStudents = studentService.GetAll().ToList();
             registrationViewModel.AvaliableCourses = courseService.GetAll().ToList();
-
+            
             return View(registrationViewModel);
         }
 
@@ -75,14 +80,16 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,RegisterKey")] Registration registration)
+        public ActionResult Create([Bind(Include = "Id, Student.Id, Course.Id")] Registration registration)
         {
             if (ModelState.IsValid)
             {
+                var StudentToAdd = studentService.Details(1);
+                var CourseToAdd = courseService.Details(1);
                 Registration registrationToAdd = new Registration
                 {
-                    Student = registration.Student,
-                    Course = registration.Course,
+                    Student = StudentToAdd,
+                    Course = CourseToAdd,
                     RegisterKey = "234j23g4234k"
                 };
 

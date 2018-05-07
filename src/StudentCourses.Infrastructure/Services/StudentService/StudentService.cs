@@ -25,6 +25,15 @@ namespace StudentCourses.Infrastructure.Services.StudentService
         }
 
         /// <summary>
+        /// Finds a student by its Id.
+        /// </summary>
+        /// <returns></returns>
+        public Student FindById(int Id)
+        {
+            return studentRepository.FindById(Id);
+        }
+
+        /// <summary>
         /// Detailses the specified student by identifier.
         /// </summary>
         /// <param name="Id">The identifier.</param>
