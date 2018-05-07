@@ -1,5 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
+using System.Collections.Generic;
+using System.Data.Entity.Core;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
 using StudentCourses.Infrastructure.DataContexts;
@@ -13,7 +14,6 @@ namespace StudentCourses.Infrastructure.Repositories
     {
         /// <summary>
         /// The database context object.
-        /// Retrieved from DataContext Singleton
         /// </summary>
         private DataBaseContext _context;
 
@@ -22,7 +22,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// </summary>
         public RegistrationRepository()
         {
-            this._context = DataBaseContext.GetInstance();
+            _context = new DataBaseContext();
         }
 
         /// <summary>
@@ -60,10 +60,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <summary>
         /// Gets all existing registrations.
         /// </summary>
-        public IEnumerable<Registration> GetAll()
-        {
-            return _context.Registrations;
-        }
+        public IEnumerable<Registration> GetAll() => _context.Registrations;
 
         /// <summary>
         /// Finds the registration by identifier.
@@ -73,6 +70,6 @@ namespace StudentCourses.Infrastructure.Repositories
         {
             var result = (from item in _context.Registrations where item.Id == Id select item).FirstOrDefault();
             return result;
-        }       
+        }
     }
 }

@@ -1,0 +1,56 @@
+NET Core MVC trainning
+
+
+Get Started 
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/adding-a-model
+
+
+add entity to project:
+https://www.nuget.org/packages/EntityFramework/
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/creating-a-connection-string
+
+
+DEPENDENCY INJECTION:
+https://code.msdn.microsoft.com/Dependency-Injection-in-11d54863
+- using Unity.Mvc
+https://www.codeproject.com/Articles/744862/Dependency-injection-in-class-libraries
+http://blog.ploeh.dk/2014/05/19/di-friendly-library/
+
+
+### USED
+REPOSITORY PATTERN
+https://www.infragistics.com/community/blogs/b/dhananjay_kumar/posts/how-to-implement-the-repository-pattern-in-asp-net-mvc-application
+
+Fix for EDIT method in Repositories, after the DataBaseContext was turned into a Singleton:
+https://stackoverflow.com/questions/30691024/updating-existing-data-in-ef-6-throws-exception-entity-of-the-same-type-al/30693353
+
+
+GOOD PRACTICES .NET MVC
+http://www.codemag.com/article/1405071/10-Good-Practices-for-ASP.NET-MVC-Apps
+
+Organization Done:
+- moved fonts folder to Content folder and change reference to them in bootstrap.css
+- moved Scripts to Content folder and change reference in App_Start/BundleConfig
+- moved .css files from Content to Content/Styles and change reference in BundleConfing and ALSO IN _Layout.cshml
+
+
+
+
+
+
+
+##############################
+NET Core MVC trainning
+
+Get Started 
+https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-2.1&tabs=aspnetcore2x
+
+
+(already added in Core:)
+add entity to project:
+https://www.nuget.org/packages/EntityFramework/
+
+
+
+
+

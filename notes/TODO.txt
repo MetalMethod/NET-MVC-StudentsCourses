@@ -1,0 +1,8 @@
+TODO 
+
+ //TODO:
+    //relations sample code 
+    //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    //{
+    //    modelBuilder.Entity<Registration>().HasMany(registration => registration.Student).WithMany()
+    //}

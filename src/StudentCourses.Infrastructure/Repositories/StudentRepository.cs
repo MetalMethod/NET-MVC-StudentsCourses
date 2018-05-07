@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System.Data.Entity.Core;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
 using StudentCourses.Infrastructure.DataContexts;
@@ -14,7 +15,6 @@ namespace StudentCourses.Infrastructure.Repositories
     {
         /// <summary>
         /// The database context object.
-        /// Retrieved from DataContext Singleton
         /// </summary>
         private DataBaseContext _context;
 
@@ -23,7 +23,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// </summary>
         public StudentRepository()
         {
-            this._context = DataBaseContext.GetInstance();
+            _context = new DataBaseContext();
         }
 
         /// <summary>
@@ -61,10 +61,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <summary>
         /// Gets all existing students.
         /// </summary>
-        public IEnumerable<Student> GetAll()
-        {
-            return _context.Students;
-        }
+        public IEnumerable<Student> GetAll() => _context.Students;
 
         /// <summary>
         /// Finds the student by identifier.
