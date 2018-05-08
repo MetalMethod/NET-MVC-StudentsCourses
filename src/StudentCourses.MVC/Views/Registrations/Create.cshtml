@@ -2,10 +2,10 @@
 @model StudentCourses.MVC.ViewModels.RegistrationViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Add New Registration";
 }
 
-<h2>Create</h2>
+<h2>Add New Registration</h2>
 
 
 @using (Html.BeginForm())
@@ -13,14 +13,15 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Registration</h4>
+        @*<h4>Registration</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.AvaliableStudents, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.AvaliableStudents, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">Avaliable Students:</label>
 
-            <div class="col-md-10">
+            <div class="col-md-10 dropdown">
                 @{
                     List<SelectListItem> StudentNamelist = new List<SelectListItem>();
 
@@ -34,14 +35,15 @@
                         );
                     }
                 }
-                @Html.DropDownListFor(model => model.StudentToRegister, StudentNamelist, "-- Select Student --")
+                @Html.DropDownListFor(model => model.StudentToRegister, StudentNamelist, "-- Select Student --", htmlAttributes: new { @class = "btn btn-primary dropdown-toggle col-md-10" })
             </div>
         </div>
 
 
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.AvaliableCourses, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-group dropdown">
+            @*@Html.LabelFor(model => model.AvaliableCourses, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <label class="control-label col-md-2">Avaliable Courses:</label>
 
             <div class="col-md-10">
                 @{
@@ -57,13 +59,13 @@
                         );
                     }
                 }
-                @Html.DropDownListFor(model => model.CourseToRegister, CourseNamelist, "-- Select Course --")
+                @Html.DropDownListFor(model => model.CourseToRegister, CourseNamelist, "-- Select Course --", htmlAttributes: new { @class = "btn btn-primary dropdown-toggle col-md-10" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create Registration" class="btn btn-default" />
+                <input type="submit" value="Add New Registration" class="btn btn-default" />
             </div>
         </div>
     </div>

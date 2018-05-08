@@ -66,6 +66,11 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations/Details/5
         public ActionResult Details(int Id)
         {
+            if (Id.Equals(null))
+            {
+                return HttpNotFound();
+            }
+
             Registration registration = registrationService.Details(Id);
             if (registration == null)
             {
@@ -112,6 +117,11 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations/Edit/Id
         public ActionResult Edit(int Id)
         {
+            if (Id.Equals(null))
+            {
+                return HttpNotFound();
+            }
+
             Registration registration = registrationService.ToEdit(Id);
             if (registration == null)
             {
@@ -138,6 +148,11 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations/Delete/Id
         public ActionResult Delete(int Id)
         {
+            if (Id.Equals(null))
+            {
+                return HttpNotFound();
+            }
+
             Registration registration = registrationService.ToDelete(Id);
             if (registration == null)
             {
@@ -151,6 +166,11 @@ namespace StudentCourses.MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int Id)
         {
+            if (Id.Equals(null))
+            {
+                return HttpNotFound();
+            }
+
             registrationService.DeleteConfirmed(Id);
             return RedirectToAction("Index");
         }
