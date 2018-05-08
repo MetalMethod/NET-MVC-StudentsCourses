@@ -13,12 +13,10 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        @*<h4>Registration</h4>*@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @*@Html.LabelFor(model => model.AvaliableStudents, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <label class="control-label col-md-2">Avaliable Students:</label>
 
             <div class="col-md-10 dropdown">
@@ -35,14 +33,11 @@
                         );
                     }
                 }
-                @Html.DropDownListFor(model => model.StudentToRegister, StudentNamelist, "-- Select Student --", htmlAttributes: new { @class = "btn btn-primary dropdown-toggle col-md-10" })
+                @Html.DropDownListFor(model => model.StudentToRegister, StudentNamelist, "-- Select Student --", htmlAttributes: new { @class = "btn btn-primary col-md-10" })
             </div>
         </div>
-
-
-
+        
         <div class="form-group dropdown">
-            @*@Html.LabelFor(model => model.AvaliableCourses, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <label class="control-label col-md-2">Avaliable Courses:</label>
 
             <div class="col-md-10">
@@ -59,7 +54,7 @@
                         );
                     }
                 }
-                @Html.DropDownListFor(model => model.CourseToRegister, CourseNamelist, "-- Select Course --", htmlAttributes: new { @class = "btn btn-primary dropdown-toggle col-md-10" })
+                @Html.DropDownListFor(model => model.CourseToRegister, CourseNamelist, "-- Select Course --", htmlAttributes: new { @class = "btn btn-primary  col-md-10" })
             </div>
         </div>
 
