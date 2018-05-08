@@ -11,14 +11,17 @@ namespace StudentCourses.Test
     {
         private StudentRepository studentRepository;
         private CourseRepository courseRepository;
+        private RegistrationRepository registrationRepository;
 
         [TestInitialize]
         public void TestSetup()
         {
             StudentCoursesDataInitializer database = new StudentCoursesDataInitializer();
             System.Data.Entity.Database.SetInitializer(database);
+
             studentRepository = new StudentRepository();
             courseRepository = new CourseRepository();
+            registrationRepository = new RegistrationRepository();
         }
 
         // STUDENT REPOSITORY TESTS
@@ -69,6 +72,8 @@ namespace StudentCourses.Test
         [TestMethod]
         public void IsStudentRepositoryEditingStudent()
         {
+            var result = studentRepository.FindById(1);
+
             Student studentToEdit = new Student
             {
                 StudentId = 1,
@@ -76,10 +81,8 @@ namespace StudentCourses.Test
                 LastName = "Harris"
             };
 
-            var result = studentRepository.FindById(1);
             studentRepository.Edit(studentToEdit);
             Assert.AreEqual(studentToEdit.StudentId, result.StudentId);
-            //Assert.AreNotEqual(studentToEdit.FirstName, result.FirstName);
         }
 
         [TestMethod]
@@ -147,7 +150,6 @@ namespace StudentCourses.Test
             var result = courseRepository.FindById(1);
             courseRepository.Edit(courseToEdit);
             Assert.AreEqual(courseToEdit.CourseId, result.CourseId);
-            //Assert.AreNotEqual(courseToEdit.Name, result.Name);
         }
 
         [TestMethod]
@@ -159,5 +161,74 @@ namespace StudentCourses.Test
             Assert.AreNotEqual(initalCount, removedCount);
         }
 
+        // REGISTRATION REPOSITORY TESTS
+
+        [TestMethod]
+        public void IsRegistrationRepositoryGetAllCorrectly()
+        {
+            var result = registrationRepository.GetAll();
+            Assert.AreEqual(result.Count(), 2);
+        }
+
+        [TestMethod]
+        public void IsRegistrationRepositoryInitializedWithValidNumberOfData()
+        {
+            // Test if the database is correctly created
+            var result = registrationRepository.GetAll();
+            Assert.IsNotNull(result);
+
+            //Test if number of initial records is correct
+            var numberOfRecords = result.ToList().Count;
+            Assert.AreEqual(2, numberOfRecords);
+        }
+
+        [TestMethod]
+        public void IsRegistrationRepositoryAddingRegistration()
+        {
+            Registration registrationToAdd = new Registration
+            {
+                StudentId = 1,
+                CourseId = 1,
+                RegisterKey = "3333cccc"
+            };
+
+            registrationRepository.Add(registrationToAdd);
+            //If course is inserted correctly rows number will be 3
+            var result = registrationRepository.GetAll();
+            var numberOfRecords = result.ToList().Count;
+            Assert.AreEqual(3, numberOfRecords);
+        }
+
+        [TestMethod]
+        public void IsRegistrationRepositoryFindByIdCorrectly()
+        {
+            var findObject = registrationRepository.FindById(2);
+            Assert.AreEqual(findObject.RegisterKey, "2222bbbb");
+        }
+
+        [TestMethod]
+        public void IsRegistrationRepositoryEditingRegistration()
+        {
+            Registration registrationToEdit = new Registration
+            {
+                Id = 1,
+                StudentId = 4,
+                CourseId = 4,
+                RegisterKey = "editedKeyInTests"
+            };
+
+            var result = registrationRepository.FindById(1);
+            registrationRepository.Edit(registrationToEdit);
+            Assert.AreEqual(registrationToEdit.CourseId, result.CourseId);
+        }
+
+        [TestMethod]
+        public void IsRegistrationRepositoryRemoveCorrectly()
+        {
+            var initalCount = registrationRepository.GetAll().Count();
+            registrationRepository.Remove(2);
+            var removedCount = registrationRepository.GetAll().Count();
+            Assert.AreNotEqual(initalCount, removedCount);
+        }
     }
 }
