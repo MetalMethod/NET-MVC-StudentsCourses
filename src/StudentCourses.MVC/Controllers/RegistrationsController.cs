@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
-using StudentCourses.Infrastructure.DataContexts;
 using StudentCourses.MVC.ViewModels;
 
 namespace StudentCourses.MVC.Controllers
@@ -23,9 +16,20 @@ namespace StudentCourses.MVC.Controllers
         /// The registration service instance
         /// </summary>
         private IRepositoryService<Registration> registrationService;
+
+        /// <summary>
+        /// The student service instance
+        /// </summary>
         private IRepositoryService<Student> studentService;
+
+        /// <summary>
+        /// The course service instance
+        /// </summary>
         private IRepositoryService<Course> courseService;
 
+        /// <summary>
+        /// The registration view model instance
+        /// </summary>
         public RegistrationViewModel registrationViewModel;
 
         /// <summary>
@@ -37,7 +41,6 @@ namespace StudentCourses.MVC.Controllers
             IRepositoryService<Registration> registrationService,
             IRepositoryService<Student> studentService,
             IRepositoryService<Course> courseService
-
             )
         {
             this.registrationService = registrationService;
