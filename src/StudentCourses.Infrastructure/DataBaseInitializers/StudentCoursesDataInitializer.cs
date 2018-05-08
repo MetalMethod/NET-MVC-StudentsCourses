@@ -35,11 +35,18 @@ namespace StudentCourses.Infrastructure.DatabaseInitializers
 
             context.Registrations.Add(new Registration
             {
-                Student = context.Students.Find(1),
-                Course = context.Courses.Find(2),
+                StudentId = 1,
+                CourseId = 1,
                 RegisterKey = "1111aaaa"
             });
-                        
+
+            context.Registrations.Add(new Registration
+            {
+                StudentId = 2,
+                CourseId = 2,
+                RegisterKey = "2222bbbb"
+            });
+
             context.SaveChanges();
             base.Seed(context);
         }

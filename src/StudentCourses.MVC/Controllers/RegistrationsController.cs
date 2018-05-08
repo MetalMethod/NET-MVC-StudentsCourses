@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
@@ -53,7 +54,11 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations
         public ActionResult Index()
         {
+            registrationViewModel.AvaliableStudents = studentService.GetAll().ToList();
+            registrationViewModel.AvaliableCourses = courseService.GetAll().ToList();
+
             registrationViewModel.CurrentRegistrations = registrationService.GetAll().ToList();
+  
 
             return View(registrationViewModel);
         }
@@ -83,24 +88,25 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, Student.Id, Course.Id")] Registration registration)
+        public ActionResult Create([Bind(Include = "StudentToRegister, CourseToRegister")] RegistrationViewModel registrationViewmodel)
         {
             if (ModelState.IsValid)
             {
-                var StudentToAdd = studentService.Details(1);
-                var CourseToAdd = courseService.Details(1);
+                int StudentToAdd = Int32.Parse(registrationViewmodel.StudentToRegister);
+                int CourseToAdd = Int32.Parse(registrationViewmodel.CourseToRegister);
+
                 Registration registrationToAdd = new Registration
                 {
-                    Student = StudentToAdd,
-                    Course = CourseToAdd,
-                    RegisterKey = "234j23g4234k"
+                    StudentId = StudentToAdd,
+                    CourseId = CourseToAdd,
+                    RegisterKey = "formSubmitted"
                 };
 
                 registrationService.Add(registrationToAdd);
                 return RedirectToAction("Index");
             }
 
-            return View(registration);
+            return View(registrationViewmodel);
         }
 
         /// GET: Registrations/Edit/Id

@@ -15,7 +15,7 @@ namespace StudentCourses.Domain.Models
         /// The identifier.
         /// </value>
         [Key]
-        public int Id { get; set; }
+        public int CourseId { get; set; }
 
         /// <summary>
         /// Gets or sets the name.

@@ -32,13 +32,18 @@ namespace StudentCourses.MVC.ViewModels
         /// </value>
         public List<Registration> CurrentRegistrations { get; set; }
 
+
+        public List<Student> RegisteredStudents { get; set; }
+        
+        public List<Course> RegisteredCourses { get; set; }
+
         /// <summary>
         /// Gets or sets the student to register.
         /// </summary>
         /// <value>
         /// The student to register.
         /// </value>
-        public Student StudentToRegister { get; set; }
+        public string StudentToRegister { get; set; }
 
         /// <summary>
         /// Gets or sets the course to register.
@@ -46,6 +51,6 @@ namespace StudentCourses.MVC.ViewModels
         /// <value>
         /// The course to register.
         /// </value>
-        public Course CourseToRegister { get; set; }
+        public string CourseToRegister { get; set; }
     }
 }

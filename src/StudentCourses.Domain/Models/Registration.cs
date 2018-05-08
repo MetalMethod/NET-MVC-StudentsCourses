@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using StudentCourses.Domain.Interfaces;
 
 namespace StudentCourses.Domain.Models
@@ -23,7 +24,7 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The student.
         /// </value>
-        public Student Student { get; set; }
+        public int StudentId { get; set; }
 
         /// <summary>
         /// Gets or sets the course.
@@ -31,7 +32,7 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The course.
         /// </value>
-        public Course Course { get; set; }
+        public int CourseId { get; set; }
 
         /// <summary>
         /// Gets or sets the register key.

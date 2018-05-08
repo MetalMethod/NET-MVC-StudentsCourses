@@ -42,7 +42,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="student">The student.</param>
         public void Edit(Student studentToEdit)
         {
-            var currentStudent = FindById(studentToEdit.Id);
+            var currentStudent = FindById(studentToEdit.StudentId);
             _context.Entry(currentStudent).CurrentValues.SetValues(studentToEdit);
             _context.SaveChanges();
         }
@@ -69,7 +69,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public Student FindById(int Id)
         {
-            var result = (from item in _context.Students where item.Id == Id select item).FirstOrDefault();
+            var result = (from item in _context.Students where item.StudentId == Id select item).FirstOrDefault();
             return result;
         }
     }
