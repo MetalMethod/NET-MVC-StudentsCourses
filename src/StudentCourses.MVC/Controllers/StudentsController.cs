@@ -13,22 +13,22 @@ namespace StudentCourses.MVC.Controllers
         /// <summary>
         /// The student service instance.
         /// </summary>
-        private IRepositoryService<Student> studentService;
+        private IRepository<Student> _studentRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StudentsController"/> class.
         /// Using Unity Dependency Injection
         /// </summary>
-        /// <param name="studentService">The student service.</param>
-        public StudentsController(IRepositoryService<Student> studentService)
+        /// <param name="_studentRepository">The student service.</param>
+        public StudentsController(IRepository<Student> _studentRepository)
         {
-            this.studentService = studentService;
+            this._studentRepository = _studentRepository;
         }
 
         /// GET: Students
         public ActionResult Index()
         {
-            return View(studentService.GetAll());
+            return View(_studentRepository.GetAll());
         }
 
         /// GET: Students/Details/Id
@@ -39,7 +39,7 @@ namespace StudentCourses.MVC.Controllers
                 return HttpNotFound();
             }
 
-            Student student = studentService.Details(Id);
+            Student student = _studentRepository.FindById(Id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -58,11 +58,11 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName")] Student student)
+        public ActionResult Create([Bind(Include = "FirstName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
-                studentService.Add(student);
+                _studentRepository.Add(student);
                 return RedirectToAction("Index");
             }
 
@@ -77,7 +77,7 @@ namespace StudentCourses.MVC.Controllers
                 return HttpNotFound();
             }
 
-            Student student = studentService.ToEdit(Id);
+            Student student = _studentRepository.FindById(Id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -90,11 +90,11 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentId,FirstName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
-                studentService.Edit(student);
+                _studentRepository.Edit(student);
                 return RedirectToAction("Index");
             }
             return View(student);
@@ -108,7 +108,7 @@ namespace StudentCourses.MVC.Controllers
                 return HttpNotFound();
             }
 
-            Student student = studentService.ToDelete(Id);
+            Student student = _studentRepository.FindById(Id);
             if (student == null)
             {
                 return HttpNotFound();
@@ -126,7 +126,7 @@ namespace StudentCourses.MVC.Controllers
                 return HttpNotFound();
             }
 
-            studentService.DeleteConfirmed(Id);
+            _studentRepository.Remove(Id);
             return RedirectToAction("Index");
         }
   

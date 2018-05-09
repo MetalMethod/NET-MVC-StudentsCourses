@@ -16,17 +16,17 @@ namespace StudentCourses.MVC.Controllers
         /// <summary>
         /// The registration service instance
         /// </summary>
-        private IRepositoryService<Registration> registrationService;
+        private IRepository<Registration> _registrationRepository;
 
         /// <summary>
         /// The student service instance
         /// </summary>
-        private IRepositoryService<Student> studentService;
+        private IRepository<Student> _studentRepository;
 
         /// <summary>
         /// The course service instance
         /// </summary>
-        private IRepositoryService<Course> courseService;
+        private IRepository<Course> _courseRepository;
 
         /// <summary>
         /// The registration view model instance
@@ -39,14 +39,14 @@ namespace StudentCourses.MVC.Controllers
         /// </summary>
         /// <param name="registrationService">The registration service.</param>
         public RegistrationsController(
-            IRepositoryService<Registration> registrationService,
-            IRepositoryService<Student> studentService,
-            IRepositoryService<Course> courseService
+            IRepository<Registration> registrationRepository,
+            IRepository<Student> studentRepository,
+            IRepository<Course> courseRepository
             )
         {
-            this.registrationService = registrationService;
-            this.studentService = studentService;
-            this.courseService = courseService;
+            this._registrationRepository = registrationRepository;
+            this._studentRepository = studentRepository;
+            this._courseRepository = courseRepository;
 
             this.registrationViewModel = new RegistrationViewModel();
         }
@@ -54,10 +54,10 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations
         public ActionResult Index()
         {
-            registrationViewModel.AvaliableStudents = studentService.GetAll().ToList();
-            registrationViewModel.AvaliableCourses = courseService.GetAll().ToList();
+            registrationViewModel.AvaliableStudents = _studentRepository.GetAll().ToList();
+            registrationViewModel.AvaliableCourses = _courseRepository.GetAll().ToList();
 
-            registrationViewModel.CurrentRegistrations = registrationService.GetAll().ToList();
+            registrationViewModel.CurrentRegistrations = _registrationRepository.GetAll().ToList();
   
 
             return View(registrationViewModel);
@@ -71,7 +71,7 @@ namespace StudentCourses.MVC.Controllers
                 return HttpNotFound();
             }
 
-            Registration registration = registrationService.Details(Id);
+            Registration registration = _registrationRepository.FindById(Id);
             if (registration == null)
             {
                 return HttpNotFound();
@@ -82,8 +82,8 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations/Create
         public ActionResult Create()
         {
-            registrationViewModel.AvaliableStudents = studentService.GetAll().ToList();
-            registrationViewModel.AvaliableCourses = courseService.GetAll().ToList();
+            registrationViewModel.AvaliableStudents = _studentRepository.GetAll().ToList();
+            registrationViewModel.AvaliableCourses = _courseRepository.GetAll().ToList();
             
             return View(registrationViewModel);
         }
@@ -107,7 +107,7 @@ namespace StudentCourses.MVC.Controllers
                     RegisterKey = "formSubmitted"
                 };
 
-                registrationService.Add(registrationToAdd);
+                _registrationRepository.Add(registrationToAdd);
                 return RedirectToAction("Index");
             }
 
@@ -122,7 +122,7 @@ namespace StudentCourses.MVC.Controllers
                 return HttpNotFound();
             }
 
-            Registration registration = registrationService.ToEdit(Id);
+            Registration registration = _registrationRepository.FindById(Id);
             if (registration == null)
             {
                 return HttpNotFound();
@@ -135,11 +135,11 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, StudentId, CourseId, RegisterKey")] Registration registration)
+        public ActionResult Edit([Bind(Include = "RegistrationId, StudentId, CourseId, RegisterKey")] Registration registration)
         {
             if (ModelState.IsValid)
             {
-                registrationService.Edit(registration);
+                _registrationRepository.Edit(registration);
                 return RedirectToAction("Index");
             }
             return View(registration);
@@ -153,7 +153,7 @@ namespace StudentCourses.MVC.Controllers
                 return HttpNotFound();
             }
 
-            Registration registration = registrationService.ToDelete(Id);
+            Registration registration = _registrationRepository.FindById(Id);
             if (registration == null)
             {
                 return HttpNotFound();
@@ -171,7 +171,7 @@ namespace StudentCourses.MVC.Controllers
                 return HttpNotFound();
             }
 
-            registrationService.DeleteConfirmed(Id);
+            _registrationRepository.Remove(Id);
             return RedirectToAction("Index");
         }
     }

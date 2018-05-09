@@ -2,9 +2,7 @@ using System;
 using Unity;
 using StudentCourses.Domain.Models;
 using StudentCourses.Domain.Interfaces;
-using StudentCourses.Infrastructure.Services.StudentService;
-using StudentCourses.Infrastructure.Services.CourseService;
-using StudentCourses.Infrastructure.Services.RegistrationService;
+using StudentCourses.Infrastructure.Repositories;
 
 namespace StudentCourses.MVC
 {
@@ -45,9 +43,9 @@ namespace StudentCourses.MVC
             // container.LoadConfiguration();
 
             // TODO: Register your type's mappings here.
-            container.RegisterType<IRepositoryService<Student>, StudentService>();
-            container.RegisterType<IRepositoryService<Course>, CourseService>();
-            container.RegisterType<IRepositoryService<Registration>, RegistrationService>();
+            container.RegisterType<IRepository<Student>, StudentRepository>();
+            container.RegisterType<IRepository<Course>, CourseRepository>();
+            container.RegisterType<IRepository<Registration>, RegistrationRepository>();
         }
     }
 }

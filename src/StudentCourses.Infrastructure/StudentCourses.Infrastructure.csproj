@@ -53,9 +53,6 @@
     <Compile Include="Repositories\CourseRepository.cs" />
     <Compile Include="Repositories\RegistrationRepository.cs" />
     <Compile Include="Repositories\StudentRepository.cs" />
-    <Compile Include="Services\CourseService\CourseService.cs" />
-    <Compile Include="Services\RegistrationService\RegistrationService.cs" />
-    <Compile Include="Services\StudentService\StudentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
