@@ -1,0 +1,4 @@
+<!-- Added connection string , name must be declared in Data Context classes using base()-->
+  <connectionStrings>
+    <add name="StudentCoursesConnectionString" connectionString="Data Source=(LocalDb)\v11.0;Initial Catalog=StudentCoursesDB;Integrated Security=True;MultipleActiveResultSets=true" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
