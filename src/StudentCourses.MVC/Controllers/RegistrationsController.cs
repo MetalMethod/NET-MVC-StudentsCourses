@@ -14,17 +14,17 @@ namespace StudentCourses.MVC.Controllers
     public class RegistrationsController : Controller
     {
         /// <summary>
-        /// The registration service instance
+        /// The registration repository instance
         /// </summary>
         private IRepository<Registration> _registrationRepository;
 
         /// <summary>
-        /// The student service instance
+        /// The student repository instance
         /// </summary>
         private IRepository<Student> _studentRepository;
 
         /// <summary>
-        /// The course service instance
+        /// The course repository instance
         /// </summary>
         private IRepository<Course> _courseRepository;
 

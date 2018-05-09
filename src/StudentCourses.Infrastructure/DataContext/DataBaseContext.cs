@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using StudentCourses.Domain.Models;
 
-namespace StudentCourses.Infrastructure.DataContexts
+namespace StudentCourses.Infrastructure.DataContext
 {
     /// <summary>
     /// The DataBase context class for the Entity Framework.

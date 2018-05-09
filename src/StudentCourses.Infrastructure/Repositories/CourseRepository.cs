@@ -1,9 +1,8 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using System.Data.Entity.Core;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
-using StudentCourses.Infrastructure.DataContexts;
+using StudentCourses.Infrastructure.DataContext;
 
 namespace StudentCourses.Infrastructure.Repositories
 {

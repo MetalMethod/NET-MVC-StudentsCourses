@@ -11,7 +11,7 @@ namespace StudentCourses.MVC.Controllers
     public class CoursesController : Controller
     {
         /// <summary>
-        /// The course service instance.
+        /// The course repository instance.
         /// </summary>
         private IRepository<Course> _courseRepository;
         
