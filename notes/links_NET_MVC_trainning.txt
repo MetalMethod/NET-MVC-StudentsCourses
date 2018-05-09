@@ -9,6 +9,10 @@ add entity to project:
 https://www.nuget.org/packages/EntityFramework/
 https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/creating-a-connection-string
 
+Entety relations, navigation properties and foreing keys:
+https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application
+
+
 
 DEPENDENCY INJECTION:
 https://code.msdn.microsoft.com/Dependency-Injection-in-11d54863
