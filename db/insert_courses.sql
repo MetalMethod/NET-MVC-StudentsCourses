@@ -1,12 +1,14 @@
+USE StudentsCoursesDBfirst;
 
-INSERT INTO Courses(Name)
-VALUES('Drawing101')
 
-INSERT INTO Courses(Name)
-VALUES('Mathematics101')
+INSERT INTO Course(Name, Vacancies)
+VALUES('Drawing101', 10)
 
-INSERT INTO Courses(Name)
-VALUES('Csharp Development')
+INSERT INTO Course(Name, Vacancies)
+VALUES('Mathematics101', 20)
 
-INSERT INTO Courses(Name)
-VALUES('NET MVC')
+INSERT INTO Course(Name, Vacancies)
+VALUES('Csharp Development', 30)
+
+INSERT INTO Course(Name, Vacancies)
+VALUES('NET MVC', 20)

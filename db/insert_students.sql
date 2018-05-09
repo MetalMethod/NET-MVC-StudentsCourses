@@ -1,23 +1,26 @@
-INSERT INTO Students (FirstName, LastName)
+USE StudentsCoursesDBfirst;
+
+
+INSERT INTO Student (FirstName, LastName)
 VALUES ('James','Hetfield'); 
 
-INSERT INTO Students (FirstName, LastName)
+INSERT INTO Student (FirstName, LastName)
 VALUES ('Manny','Clark'); 
 
-INSERT INTO Students (FirstName, LastName)
+INSERT INTO Student (FirstName, LastName)
 VALUES ('Jeff','Loomis'); 
 
-INSERT INTO Students (FirstName, LastName)
+INSERT INTO Student (FirstName, LastName)
 VALUES ('Ola','Strandberg'); 
 
-INSERT INTO Students (FirstName, LastName)
+INSERT INTO Student (FirstName, LastName)
 VALUES ('Renato','Romano'); 
 
-INSERT INTO Students (FirstName, LastName)
+INSERT INTO Student (FirstName, LastName)
 VALUES ('William','Wallace'); 
 
-INSERT INTO Students (FirstName, LastName)
+INSERT INTO Student (FirstName, LastName)
 VALUES ('Martin','RouterKing'); 
 
-INSERT INTO Students (FirstName, LastName)
+INSERT INTO Student (FirstName, LastName)
 VALUES ('Yvette','Young'); 

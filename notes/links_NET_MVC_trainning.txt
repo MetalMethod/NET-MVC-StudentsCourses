@@ -40,7 +40,8 @@ Organization Done:
 - moved .css files from Content to Content/Styles and change reference in BundleConfing and ALSO IN _Layout.cshml
 
 
-
+Add Hash 8 chars long:
+https://stackoverflow.com/questions/1116860/whats-the-best-way-to-create-a-short-hash-similar-to-what-tiny-url-does
 
 
 
