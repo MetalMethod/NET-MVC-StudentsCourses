@@ -17,11 +17,6 @@ namespace StudentCourses.Infrastructure.DataContexts
         }
 
         /// <summary>
-        /// The Singleton context object
-        /// </summary>
-        public static DataBaseContext ContextObject;
-
-        /// <summary>
         /// Gets or sets the students.
         /// </summary>
         /// <value>
