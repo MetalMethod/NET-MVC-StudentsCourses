@@ -103,6 +103,7 @@ namespace StudentCourses.MVC.Controllers
                     Student_ID = StudentToAdd,
                     Course_ID = CourseToAdd,
                     RegistrationKey = "1111form"
+                   
                 };
 
                 _registrationRepository.Add(registrationToAdd);

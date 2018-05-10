@@ -12,16 +12,37 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.RegisterKey)
+            @Html.DisplayNameFor(model => model.Student)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RegisterKey)
+            @Html.DisplayFor(model => model.Student.FirstName)
+            @Html.DisplayFor(model => model.Student.LastName)
         </dd>
+    </dl>
+    <dl class="dl-horizontal">
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Course)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RegistrationKey)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegistrationKey)
+        </dd>
     </dl>
 
-    @using (Html.BeginForm()) {
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

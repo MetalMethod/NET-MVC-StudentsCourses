@@ -28,10 +28,11 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Student_ID)
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+                @Html.DisplayFor(modelItem => item.Student.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Course_ID)
+                @Html.DisplayFor(modelItem => item.Course.Name)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RegistrationKey)

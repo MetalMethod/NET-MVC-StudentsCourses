@@ -18,7 +18,7 @@
     @Html.HiddenFor(model => model.ID)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Student, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
@@ -26,7 +26,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Course, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
@@ -34,10 +34,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.RegisterKey, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.RegistrationKey, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.RegisterKey, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.RegisterKey, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.RegistrationKey, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RegistrationKey, "", new { @class = "text-danger" })
         </div>
     </div>
 
