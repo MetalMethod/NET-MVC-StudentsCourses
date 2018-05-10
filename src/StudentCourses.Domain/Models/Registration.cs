@@ -42,5 +42,11 @@ namespace StudentCourses.Domain.Models
         public Course Course { get; set; }
 
         public Student Student { get; set; }
+
+        public void Register(Student student, Course course)
+        {
+            this.Course = course;
+            this.Student = student;
+        }
     }
 }

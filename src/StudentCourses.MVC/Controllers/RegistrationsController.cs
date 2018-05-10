@@ -54,12 +54,10 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations
         public ActionResult Index()
         {
-            registrationViewModel.AvaliableStudents = _studentRepository.GetAll().ToList();
-            registrationViewModel.AvaliableCourses = _courseRepository.GetAll().ToList();
-
+            //registrationViewModel.AvaliableStudents = _studentRepository.GetAll().ToList();
+            //registrationViewModel.AvaliableCourses = _courseRepository.GetAll().ToList();
             registrationViewModel.CurrentRegistrations = _registrationRepository.GetAll().ToList();
   
-
             return View(registrationViewModel);
         }
 

@@ -33,5 +33,11 @@ namespace StudentCourses.Domain.Models
         public string LastName { get; set; }
 
         public List<Registration> Registrations { get; set; }
+
+        public void Register(Registration registration)
+        {
+            Registrations.Add(registration);
+        }
+
     }
 }

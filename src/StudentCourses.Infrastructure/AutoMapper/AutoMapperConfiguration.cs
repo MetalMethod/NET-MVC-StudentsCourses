@@ -29,9 +29,13 @@ namespace StudentCourses.Infrastructure.AutoMapper
     {
         public MappingProfile()
         {
-            CreateMap<Student, StudentEntityModel>();
-            CreateMap<Course, CourseEntityModel>();
-            CreateMap<Registration, RegistrationEntityModel>();
+            CreateMap<Student, StudentEntityModel>().MaxDepth(2);
+            CreateMap<Course, CourseEntityModel>().MaxDepth(2);
+            CreateMap<Registration, RegistrationEntityModel>().MaxDepth(2);
+
+            CreateMap<StudentEntityModel, Student>().MaxDepth(2);
+            CreateMap<CourseEntityModel, Course>().MaxDepth(2);
+            CreateMap<RegistrationEntityModel, Registration>().MaxDepth(2);
         }
     }
 }

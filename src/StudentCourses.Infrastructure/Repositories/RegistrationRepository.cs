@@ -85,8 +85,10 @@ namespace StudentCourses.Infrastructure.Repositories
         /// </summary>
         public IEnumerable<Registration> GetAll()
         {
-            var rg = _context.Registrations.ToList();
-            return Mapping.Mapper.Map<ICollection<RegistrationEntityModel>, ICollection<Registration>>(rg);
+            ICollection<RegistrationEntityModel> registrationsEntity = _context.Registrations.ToList();
+
+            return Mapping.Mapper.Map<ICollection<RegistrationEntityModel>, ICollection<Registration>>(registrationsEntity);
+
         }
 
         /// <summary>
@@ -95,7 +97,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public Registration FindById(int Id)
         {
-            return Mapping.Mapper.Map<RegistrationEntityModel, Registration>(_context.Registrations.Find(Id));
+           return Mapping.Mapper.Map<RegistrationEntityModel, Registration>(_context.Registrations.Find(Id));
         }
     }
 }

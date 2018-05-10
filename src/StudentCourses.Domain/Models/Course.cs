@@ -27,5 +27,12 @@ namespace StudentCourses.Domain.Models
         public int Vacancies { get; set; }
 
         public List<Registration> Registrations { get; set; }
+
+        public void Register(Registration registration)
+        {
+            Registrations.Add(registration);
+            Vacancies = Vacancies--;
+        }
+
     }
 }
