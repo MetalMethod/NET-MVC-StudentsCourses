@@ -52,5 +52,7 @@ namespace StudentCourses.MVC.ViewModels
         /// The course to register.
         /// </value>
         public string CourseToRegister { get; set; }
+
+        public Registration RegistrationToEdit { get; set; }
     }
 }

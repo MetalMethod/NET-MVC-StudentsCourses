@@ -116,17 +116,24 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations/Edit/Id
         public ActionResult Edit(int Id)
         {
+            registrationViewModel.AvaliableStudents = _studentRepository.GetAll().ToList();
+            registrationViewModel.AvaliableCourses = _courseRepository.GetAll().ToList();
+
             if (Id.Equals(null))
             {
                 return HttpNotFound();
             }
 
             Registration registration = _registrationRepository.FindById(Id);
+
             if (registration == null)
             {
                 return HttpNotFound();
             }
-            return View(registration);
+
+            registrationViewModel.RegistrationToEdit = registration;
+
+            return View(registrationViewModel);
         }
 
         /// POST: Registrations/Edit/Id

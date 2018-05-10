@@ -1,4 +1,5 @@
-﻿@model StudentCourses.Domain.Models.Registration
+﻿@*@model StudentCourses.Domain.Models.Registration*@
+@model StudentCourses.MVC.ViewModels.RegistrationViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -10,43 +11,69 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <h4>Registration</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.ID)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Student, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <h4>Registration</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.RegistrationToEdit)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Student:</label>
+
+            <div class="col-md-10 dropdown">
+                @{
+            List<SelectListItem> StudentNamelist = new List<SelectListItem>();
+
+            foreach (var item in Model.AvaliableStudents)
+            {
+                StudentNamelist.Add(new SelectListItem
+                {
+                    Text = item.FirstName.ToString() + " " + item.LastName.ToString(),
+                    Value = item.ID.ToString()
+                }
+                );
+            }
+                }
+                @Html.DropDownListFor(model => model.StudentToRegister, StudentNamelist, "-- Select Student --", htmlAttributes: new { @class = "btn btn-primary col-md-10" })
+            </div>
+        </div>
+
+        <div class="form-group dropdown">
+            <label class="control-label col-md-2">Course:</label>
+
+            <div class="col-md-10">
+                @{
+            List<SelectListItem> CourseNamelist = new List<SelectListItem>();
+
+            foreach (var item in Model.AvaliableCourses)
+            {
+                CourseNamelist.Add(new SelectListItem
+                {
+                    Text = item.Name,
+                    Value = item.ID.ToString()
+                }
+                );
+            }
+                }
+                @Html.DropDownListFor(model => model.CourseToRegister, CourseNamelist, "-- Select Course --", htmlAttributes: new { @class = "btn btn-primary  col-md-10" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RegistrationToEdit.RegistrationKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RegistrationToEdit.RegistrationKey, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RegistrationToEdit.RegistrationKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Course, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.RegistrationKey, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.RegistrationKey, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.RegistrationKey, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
-        </div>
-    </div>
-</div>
 }
 
 <div>
