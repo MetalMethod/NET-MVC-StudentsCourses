@@ -1,5 +1,4 @@
-﻿
-namespace StudentCourses.Domain.Interfaces
+﻿namespace StudentCourses.Domain.Interfaces
 {
     public interface IEntityModel
     {

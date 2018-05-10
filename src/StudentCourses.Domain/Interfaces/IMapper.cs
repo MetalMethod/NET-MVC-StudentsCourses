@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StudentCourses.Domain.Interfaces
+﻿namespace StudentCourses.Domain.Interfaces
 {
     public interface IMapper
     {
