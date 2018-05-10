@@ -42,9 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IEntityModel.cs" />
+    <Compile Include="Interfaces\IHashGenerator.cs" />
     <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Interfaces\IModel.cs" />
+    <Compile Include="Interfaces\IDomainModel.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\Student.cs" />

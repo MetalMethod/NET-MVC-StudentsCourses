@@ -3,7 +3,7 @@ using Unity;
 using StudentCourses.Domain.Models;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Infrastructure.Repositories;
-using StudentCourses.Infrastructure.AutoMapper;
+using StudentCourses.Infrastructure.HashGenerator;
 
 namespace StudentCourses.MVC
 {
@@ -47,6 +47,7 @@ namespace StudentCourses.MVC
             container.RegisterType<IRepository<Student>, StudentRepository>();
             container.RegisterType<IRepository<Course>, CourseRepository>();
             container.RegisterType<IRepository<Registration>, RegistrationRepository>();
+            container.RegisterType<IHashGenerator, HashGenerator>();
             
         }
     }

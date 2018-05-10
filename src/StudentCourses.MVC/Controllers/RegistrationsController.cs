@@ -34,6 +34,11 @@ namespace StudentCourses.MVC.Controllers
         public RegistrationViewModel registrationViewModel;
 
         /// <summary>
+        /// The hashcode generator for new registrations
+        /// </summary>
+        private IHashGenerator _hashGenerator;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="RegistrationsController"/> class.
         /// Using Unity Dependency Injection
         /// </summary>
@@ -41,12 +46,14 @@ namespace StudentCourses.MVC.Controllers
         public RegistrationsController(
             IRepository<Registration> registrationRepository,
             IRepository<Student> studentRepository,
-            IRepository<Course> courseRepository
+            IRepository<Course> courseRepository,
+            IHashGenerator hashGenerator
             )
         {
             this._registrationRepository = registrationRepository;
             this._studentRepository = studentRepository;
             this._courseRepository = courseRepository;
+            this._hashGenerator = hashGenerator;
 
             this.registrationViewModel = new RegistrationViewModel();
         }
@@ -102,8 +109,7 @@ namespace StudentCourses.MVC.Controllers
                 {
                     Student_ID = StudentToAdd,
                     Course_ID = CourseToAdd,
-                    RegistrationKey = "1111form"
-                   
+                    RegistrationKey = _hashGenerator.Generate(_studentRepository.FindById(StudentToAdd), _courseRepository.FindById(CourseToAdd))
                 };
 
                 _registrationRepository.Add(registrationToAdd);
