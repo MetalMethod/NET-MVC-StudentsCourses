@@ -67,7 +67,10 @@ namespace StudentCourses.Infrastructure.Repositories
         /// </summary>
         public IEnumerable<Student> GetAll()
         {
-            return Mapping.Mapper.Map<ICollection<StudentEntityModel>, ICollection<Student>>(_context.Students.ToList());
+            var std = _context.Students.ToList();
+            var result =  Mapping.Mapper.Map<ICollection<StudentEntityModel>, ICollection<Student>>(std);
+
+            return result;
         }
 
         /// <summary>

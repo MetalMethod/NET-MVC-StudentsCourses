@@ -38,7 +38,6 @@ namespace StudentCourses.Infrastructure.Repositories
 
                 destinationModel.Course = _context.Courses.Find(destinationModel.Course_ID);
                 destinationModel.Student = _context.Students.Find(destinationModel.Student_ID);
-                destinationModel.RegistrationKey = "0000aaaa";
 
                 _context.Registrations.Add(destinationModel);
                 _context.SaveChanges();
@@ -86,7 +85,8 @@ namespace StudentCourses.Infrastructure.Repositories
         /// </summary>
         public IEnumerable<Registration> GetAll()
         {
-            return Mapping.Mapper.Map<ICollection<RegistrationEntityModel>, ICollection<Registration>>(_context.Registrations.ToList());
+            var rg = _context.Registrations.ToList();
+            return Mapping.Mapper.Map<ICollection<RegistrationEntityModel>, ICollection<Registration>>(rg);
         }
 
         /// <summary>

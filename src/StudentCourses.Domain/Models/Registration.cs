@@ -37,7 +37,7 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The generated register key.
         /// </value>
-        public string RegisterKey { get; set; }
+        public string RegistrationKey { get; set; }
 
         public Course Course { get; set; }
 

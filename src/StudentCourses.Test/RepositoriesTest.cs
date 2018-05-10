@@ -188,7 +188,7 @@ namespace StudentCourses.Test
             {
                 Student_ID = 1,
                 Course_ID = 1,
-                RegisterKey = "3333cccc"
+                RegistrationKey = "3333cccc"
             };
 
             registrationRepository.Add(registrationToAdd);
@@ -202,7 +202,7 @@ namespace StudentCourses.Test
         public void IsRegistrationRepositoryFindByIdCorrectly()
         {
             var findObject = registrationRepository.FindById(2);
-            Assert.AreEqual(findObject.RegisterKey, "2222bbbb");
+            Assert.AreEqual(findObject.RegistrationKey, "2222bbbb");
         }
 
         [TestMethod]
@@ -213,7 +213,7 @@ namespace StudentCourses.Test
                 ID = 1,
                 Student_ID = 4,
                 Course_ID = 4,
-                RegisterKey = "editedKeyInTests"
+                RegistrationKey = "editedKeyInTests"
             };
 
             var result = registrationRepository.FindById(1);
