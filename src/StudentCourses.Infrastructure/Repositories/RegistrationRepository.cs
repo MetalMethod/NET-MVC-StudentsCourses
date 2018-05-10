@@ -58,11 +58,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public void Remove(int Id)
         {
-            Registration registration = FindById(Id);
-
-            var destinationModel = Mapping.Mapper.Map<RegistrationEntityModel>(registration);
-
-            _context.Registrations.Remove(destinationModel);
+            _context.Registrations.Remove(_context.Registrations.Find(Id));
             _context.SaveChanges();
         }
 

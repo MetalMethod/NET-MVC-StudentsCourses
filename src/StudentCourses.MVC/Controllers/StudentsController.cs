@@ -90,7 +90,7 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentId,FirstName,LastName")] Student student)
+        public ActionResult Edit([Bind(Include = "ID,FirstName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {

@@ -44,11 +44,9 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="student">The student.</param>
         public void Edit(Student studentToEdit)
         {
-            var currentStudent = FindById(studentToEdit.ID);
+            var currentStudent = _context.Students.Find(studentToEdit.ID);
             
-            //Automapper
-            var destinationModel = Mapping.Mapper.Map<StudentEntityModel>(currentStudent);
-            var studentToEditMapped = Mapping.Mapper.Map<StudentEntityModel>(destinationModel);
+            var studentToEditMapped = Mapping.Mapper.Map<StudentEntityModel>(studentToEdit);
 
             _context.Entry(currentStudent).CurrentValues.SetValues(studentToEditMapped);
             _context.SaveChanges();
@@ -60,11 +58,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public void Remove(int Id)
         {
-            Student student = FindById(Id);
-
-            var destinationModel = Mapping.Mapper.Map<StudentEntityModel>(student);
-
-            _context.Students.Remove(destinationModel);
+            _context.Students.Remove(_context.Students.Find(Id));
             _context.SaveChanges();
         }
 

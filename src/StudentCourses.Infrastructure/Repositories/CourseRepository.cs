@@ -44,13 +44,11 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="course">The course.</param>
         public void Edit(Course courseToEdit)
         {
-            var currentCourse = FindById(courseToEdit.ID);
+            var currentCourse = _context.Courses.Find(courseToEdit.ID);
 
-            //Automapper
-            var destinationModel = Mapping.Mapper.Map<CourseEntityModel>(currentCourse);
-            var courseToEditMapped = Mapping.Mapper.Map<CourseEntityModel>(destinationModel);
+            var courseToEditMapped = Mapping.Mapper.Map<CourseEntityModel>(courseToEdit);
 
-            _context.Entry(currentCourse).CurrentValues.SetValues(courseToEdit);
+            _context.Entry(currentCourse).CurrentValues.SetValues(courseToEditMapped);
             _context.SaveChanges();
         }
 
@@ -60,11 +58,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public void Remove(int Id)
         {
-            Course course = FindById(Id);
-
-            var destinationModel = Mapping.Mapper.Map<CourseEntityModel>(course);
-
-            _context.Courses.Remove(destinationModel);
+            _context.Courses.Remove(_context.Courses.Find(Id));
             _context.SaveChanges();
         }
 

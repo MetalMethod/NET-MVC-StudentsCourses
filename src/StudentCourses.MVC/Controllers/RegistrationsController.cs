@@ -135,7 +135,7 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RegistrationId, StudentId, CourseId, RegisterKey")] Registration registration)
+        public ActionResult Edit([Bind(Include = "ID, StudentId, CourseId, RegisterKey")] Registration registration)
         {
             if (ModelState.IsValid)
             {
