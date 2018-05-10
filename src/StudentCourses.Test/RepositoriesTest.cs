@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StudentCourses.Infrastructure.Repositories;
-using StudentCourses.Infrastructure.DatabaseInitializers;
 using StudentCourses.Domain.Models;
 
 namespace StudentCourses.Test
@@ -16,8 +15,8 @@ namespace StudentCourses.Test
         [TestInitialize]
         public void TestSetup()
         {
-            StudentCoursesDataInitializer database = new StudentCoursesDataInitializer();
-            System.Data.Entity.Database.SetInitializer(database);
+            //StudentCoursesDataInitializer database = new StudentCoursesDataInitializer();
+            //System.Data.Entity.Database.SetInitializer(database);
 
             studentRepository = new StudentRepository();
             courseRepository = new CourseRepository();
@@ -50,7 +49,7 @@ namespace StudentCourses.Test
         {
             Student studentToAdd = new Student
             {
-                StudentId = 9,
+                ID = 9,
                 FirstName = "Steve",
                 LastName = "Harris"
             };
@@ -76,13 +75,13 @@ namespace StudentCourses.Test
 
             Student studentToEdit = new Student
             {
-                StudentId = 1,
+                ID = 1,
                 FirstName = "Steve",
                 LastName = "Harris"
             };
 
             studentRepository.Edit(studentToEdit);
-            Assert.AreEqual(studentToEdit.StudentId, result.StudentId);
+            Assert.AreEqual(studentToEdit.ID, result.ID);
         }
 
         [TestMethod]
@@ -120,7 +119,7 @@ namespace StudentCourses.Test
         {
             Course courseToAdd = new Course
             {
-                CourseId = 7,
+                ID = 7,
                 Name = "Reactive Programming"
             };
 
@@ -143,13 +142,13 @@ namespace StudentCourses.Test
         {
             Course courseToEdit = new Course
             {
-                CourseId = 1,
+                ID = 1,
                 Name = "Canvas drawing"
             };
 
             var result = courseRepository.FindById(1);
             courseRepository.Edit(courseToEdit);
-            Assert.AreEqual(courseToEdit.CourseId, result.CourseId);
+            Assert.AreEqual(courseToEdit.ID, result.ID);
         }
 
         [TestMethod]
@@ -187,8 +186,8 @@ namespace StudentCourses.Test
         {
             Registration registrationToAdd = new Registration
             {
-                StudentId = 1,
-                CourseId = 1,
+                Student_ID = 1,
+                Course_ID = 1,
                 RegisterKey = "3333cccc"
             };
 
@@ -211,15 +210,15 @@ namespace StudentCourses.Test
         {
             Registration registrationToEdit = new Registration
             {
-                Id = 1,
-                StudentId = 4,
-                CourseId = 4,
+                ID = 1,
+                Student_ID = 4,
+                Course_ID = 4,
                 RegisterKey = "editedKeyInTests"
             };
 
             var result = registrationRepository.FindById(1);
             registrationRepository.Edit(registrationToEdit);
-            Assert.AreEqual(registrationToEdit.CourseId, result.CourseId);
+            Assert.AreEqual(registrationToEdit.ID, result.ID);
         }
 
         [TestMethod]

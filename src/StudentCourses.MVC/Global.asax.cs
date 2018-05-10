@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using StudentCourses.Infrastructure.AutoMapper;
 
 namespace StudentCourses.MVC
 {
@@ -16,6 +17,9 @@ namespace StudentCourses.MVC
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ///AutoMapper static class in Infrastuctore initialization
+            //AutoMapperConfiguration.Configure();
         }
     }
 }

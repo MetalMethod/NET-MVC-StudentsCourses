@@ -102,8 +102,8 @@ namespace StudentCourses.MVC.Controllers
 
                 Registration registrationToAdd = new Registration
                 {
-                    StudentId = StudentToAdd,
-                    CourseId = CourseToAdd,
+                    Student_ID = StudentToAdd,
+                    Course_ID = CourseToAdd,
                     RegisterKey = "formSubmitted"
                 };
 

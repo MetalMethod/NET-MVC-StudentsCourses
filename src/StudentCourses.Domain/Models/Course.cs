@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 using StudentCourses.Domain.Interfaces;
 
 namespace StudentCourses.Domain.Models
@@ -6,7 +6,7 @@ namespace StudentCourses.Domain.Models
     /// <summary>
     /// The Course POCO
     /// </summary>
-    public class Course : IModel
+    public class Course : IDomainModel
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -14,8 +14,7 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The identifier.
         /// </value>
-        [Key]
-        public int CourseId { get; set; }
+        public int ID { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -23,8 +22,10 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The Course name.
         /// </value>
-        [Required]
-        [MaxLength(100)]
         public string Name { get; set; }
+
+        public int Vacancies { get; set; }
+
+        public List<Registration> Registrations { get; set; }
     }
 }

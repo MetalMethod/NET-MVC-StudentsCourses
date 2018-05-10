@@ -11,7 +11,7 @@ namespace StudentCourses.Domain.Interfaces
     /// Concrete implementations uses T as different Model types.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRepository<T> where T : IModel
+    public interface IRepository<T> where T : IDomainModel
     {
         /// <summary>
         /// Adds the specified row of model of type T.

@@ -7,7 +7,7 @@ namespace StudentCourses.Domain.Interfaces
     /// Concrete implementations uses T as different Model types.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRepositoryService<T> where T : IModel
+    public interface IRepositoryService<T> where T : IEntityModel
     {
         /// <summary>
         /// Gets all models.

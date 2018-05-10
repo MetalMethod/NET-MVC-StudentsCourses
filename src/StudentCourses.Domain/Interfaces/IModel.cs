@@ -4,7 +4,7 @@
     /// A generic Type for all model entities, 
     /// used as parameter for the IRepository Interface implementations
     /// </summary>
-    public interface IModel
+    public interface IDomainModel
     {
     }
 }

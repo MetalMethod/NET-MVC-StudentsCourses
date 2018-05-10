@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
-using StudentCourses.Infrastructure.DataContext;
+using StudentCourses.Infrastructure.EntityModel;
+using StudentCourses.Infrastructure.AutoMapper;
 
 namespace StudentCourses.Infrastructure.Repositories
 {
@@ -15,14 +16,14 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <summary>
         /// The database context object.
         /// </summary>
-        private DataBaseContext _context;
+        private StudentsCoursesDBfirstEntities _context;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CourseRepository"/> class.
         /// </summary>
         public CourseRepository()
         {
-            _context = new DataBaseContext();
+            _context = new StudentsCoursesDBfirstEntities();
         }
 
         /// <summary>
@@ -31,7 +32,9 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="course">The course.</param>
         public void Add(Course course)
         {
-            _context.Courses.Add(course);
+            var destinationModel = Mapping.Mapper.Map<CourseEntityModel>(course);
+            
+            _context.Courses.Add(destinationModel);
             _context.SaveChanges();
         }
 
@@ -41,7 +44,12 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="course">The course.</param>
         public void Edit(Course courseToEdit)
         {
-            var currentCourse = FindById(courseToEdit.CourseId);
+            var currentCourse = FindById(courseToEdit.ID);
+
+            //Automapper
+            var destinationModel = Mapping.Mapper.Map<CourseEntityModel>(currentCourse);
+            var courseToEditMapped = Mapping.Mapper.Map<CourseEntityModel>(destinationModel);
+
             _context.Entry(currentCourse).CurrentValues.SetValues(courseToEdit);
             _context.SaveChanges();
         }
@@ -52,15 +60,21 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public void Remove(int Id)
         {
-            Course course = _context.Courses.Find(Id);
-            _context.Courses.Remove(course);
+            Course course = FindById(Id);
+
+            var destinationModel = Mapping.Mapper.Map<CourseEntityModel>(course);
+
+            _context.Courses.Remove(destinationModel);
             _context.SaveChanges();
         }
 
         /// <summary>
         /// Gets all existing courses.
         /// </summary>
-        public IEnumerable<Course> GetAll() => _context.Courses;
+        public IEnumerable<Course> GetAll()
+        {
+            return Mapping.Mapper.Map<ICollection<CourseEntityModel>, ICollection<Course>>(_context.Courses.ToList());
+        }
 
         /// <summary>
         /// Finds the course by identifier.
@@ -68,8 +82,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public Course FindById(int Id)
         {
-            var result = (from item in _context.Courses where item.CourseId == Id select item).FirstOrDefault();
-            return result;
+            return Mapping.Mapper.Map<CourseEntityModel, Course>(_context.Courses.Find(Id));
         }
     }
 }

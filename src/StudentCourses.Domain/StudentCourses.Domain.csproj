@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IEntityModel.cs" />
+    <Compile Include="Interfaces\IMapper.cs" />
     <Compile Include="Interfaces\IRepositoryService.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IModel.cs" />

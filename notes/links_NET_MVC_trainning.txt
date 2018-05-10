@@ -6,7 +6,11 @@ Reference Links
 Get Started 
 https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/adding-a-model
 
+DATABASE FIRST
+http://www.entityframeworktutorial.net
 
+
+#### NOT USED ANYMORE ##### CODEFIRST: 
 add entity to project:
 https://www.nuget.org/packages/EntityFramework/
 https://docs.microsoft.com/en-us/aspnet/mvc/overview/getting-started/introduction/creating-a-connection-string

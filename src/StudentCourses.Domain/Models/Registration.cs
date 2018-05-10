@@ -1,13 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using StudentCourses.Domain.Interfaces;
+﻿using StudentCourses.Domain.Interfaces;
 
 namespace StudentCourses.Domain.Models
 {
     /// <summary>
     /// The Registration POCO
     /// </summary>
-    public class Registration : IModel
+    public class Registration : IDomainModel
     {
         /// <summary>
         /// Gets or sets the identifier.
@@ -15,8 +13,7 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The identifier.
         /// </value>
-        [Key]
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         /// <summary>
         /// Gets or sets the student.
@@ -24,7 +21,7 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The student.
         /// </value>
-        public int StudentId { get; set; }
+        public int Student_ID { get; set; }
 
         /// <summary>
         /// Gets or sets the course.
@@ -32,7 +29,7 @@ namespace StudentCourses.Domain.Models
         /// <value>
         /// The course.
         /// </value>
-        public int CourseId { get; set; }
+        public int Course_ID { get; set; }
 
         /// <summary>
         /// Gets or sets the register key.
@@ -41,5 +38,9 @@ namespace StudentCourses.Domain.Models
         /// The generated register key.
         /// </value>
         public string RegisterKey { get; set; }
+
+        public Course Course { get; set; }
+
+        public Student Student { get; set; }
     }
 }
