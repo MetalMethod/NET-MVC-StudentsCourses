@@ -28,7 +28,7 @@
                         StudentNamelist.Add(new SelectListItem
                         {
                             Text = item.FirstName.ToString() + " " + item.LastName.ToString(),
-                            Value = item.StudentId.ToString()
+                            Value = item.ID.ToString()
                         }
                         );
                     }
@@ -49,7 +49,7 @@
                         CourseNamelist.Add(new SelectListItem
                         {
                             Text = item.Name,
-                            Value = item.CourseId.ToString()
+                            Value = item.ID.ToString()
                         }
                         );
                     }

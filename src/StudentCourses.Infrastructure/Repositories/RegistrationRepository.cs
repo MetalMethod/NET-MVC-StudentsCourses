@@ -4,6 +4,7 @@ using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
 using StudentCourses.Infrastructure.EntityModel;
 using StudentCourses.Infrastructure.AutoMapper;
+using System.Data.Entity.Validation;
 
 namespace StudentCourses.Infrastructure.Repositories
 {
@@ -31,10 +32,28 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="course">The course.</param>
         public void Add(Registration registration)
         {
-            var destinationModel = Mapping.Mapper.Map<RegistrationEntityModel>(registration);
+            try
+            {
+                var destinationModel = Mapping.Mapper.Map<RegistrationEntityModel>(registration);
 
-            _context.Registrations.Add(destinationModel);
-            _context.SaveChanges();
+                destinationModel.Course = _context.Courses.Find(destinationModel.Course_ID);
+                destinationModel.Student = _context.Students.Find(destinationModel.Student_ID);
+                destinationModel.RegistrationKey = "0000aaaa";
+
+                _context.Registrations.Add(destinationModel);
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var errors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in errors.ValidationErrors)
+                    {
+                        // get the error message 
+                        string errorMessage = validationError.ErrorMessage;
+                    }
+                }
+            }
         }
 
         /// <summary>
