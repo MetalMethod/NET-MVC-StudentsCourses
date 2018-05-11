@@ -58,7 +58,7 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name")] Course course)
+        public ActionResult Create([Bind(Include = "Name, Vacancies")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Course course)
+        public ActionResult Edit([Bind(Include = "ID,Name, Vacancies")] Course course)
         {
             if (ModelState.IsValid)
             {
