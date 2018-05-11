@@ -109,6 +109,8 @@ namespace StudentCourses.MVC.Controllers
                 {
                     Student_ID = StudentToAdd,
                     Course_ID = CourseToAdd,
+                    Student = _studentRepository.FindById(StudentToAdd),
+                    Course = _courseRepository.FindById(CourseToAdd),
                     RegistrationKey = _hashGenerator.Generate(_studentRepository.FindById(StudentToAdd), _courseRepository.FindById(CourseToAdd))
                 };
 
