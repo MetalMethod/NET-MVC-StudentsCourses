@@ -147,10 +147,11 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID, StudentId, CourseId, RegisterKey")] Registration registration)
+        public ActionResult Edit([Bind(Include = "ID, StudentId, CourseId")] Registration registration)
         {
             if (ModelState.IsValid)
             {
+                registration.RegistrationKey = _hashGenerator.Generate(registration.Student,registration.Course);
                 _registrationRepository.Edit(registration);
                 return RedirectToAction("Index");
             }

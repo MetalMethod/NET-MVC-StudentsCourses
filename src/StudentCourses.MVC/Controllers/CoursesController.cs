@@ -20,9 +20,9 @@ namespace StudentCourses.MVC.Controllers
         /// Using Unity Dependency Injection.
         /// </summary>
         /// <param name="_courseRepository">The course service.</param>
-        public CoursesController(IRepository<Course> _courseRepository)
+        public CoursesController(IRepository<Course> courseRepository)
         {
-            this._courseRepository = _courseRepository;
+            this._courseRepository = courseRepository;
         }
 
         /// GET: Courses
