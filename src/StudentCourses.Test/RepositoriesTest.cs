@@ -26,7 +26,8 @@ namespace StudentCourses.Test
         public void IsStudentRepositoryGetAllCorrectly()
         {
             var result = _studentRepository.GetAll();
-            Assert.AreEqual(result.Count(), 8);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(result.Count(), 2);
         }
 
         [TestMethod]
@@ -34,35 +35,33 @@ namespace StudentCourses.Test
         {
             Student studentToAdd = new Student
             {
-                ID = 9,
-                FirstName = "Steve",
-                LastName = "Harris"
+                FirstName = "FirstNameUnitTestAdded",
+                LastName = "lastNameUnitTestAdded"
             };
 
             _studentRepository.Add(studentToAdd);
-            //If student is inserted correctly rows number will be 9
-            var result = _studentRepository.GetAll();
-            var numberOfRecords = result.ToList().Count;
-            Assert.AreEqual(9, numberOfRecords);
+            var result = _studentRepository.GetAll().ToList();
+            var numberOfRecords = result.Count;
+            Assert.AreEqual(numberOfRecords, 3);
         }
 
         [TestMethod]
         public void IsStudentRepositoryFindByIdCorrectly()
         {
-            var findObject = _studentRepository.FindById(2);
-            Assert.AreEqual(findObject.FirstName, "Paul");
+            var findObject = _studentRepository.FindById(1);
+            Assert.AreEqual(findObject.FirstName, "StudentTest1");
         }
 
         [TestMethod]
         public void IsStudentRepositoryEditingStudent()
         {
-            var result = _studentRepository.FindById(1);
+            var result = _studentRepository.FindById(2);
 
             Student studentToEdit = new Student
             {
-                ID = 1,
-                FirstName = "Steve",
-                LastName = "Harris"
+                ID = 2,
+                FirstName = "StudentEditedUnitTest",
+                LastName = "StudentEditedUnitTest"
             };
 
             _studentRepository.Edit(studentToEdit);
@@ -73,7 +72,7 @@ namespace StudentCourses.Test
         public void IsStudentRepositoryRemoveCorrectly()
         {
             var initalCount = _studentRepository.GetAll().Count();
-            _studentRepository.Remove(9);
+            _studentRepository.Remove(2);
             var removedCount = _studentRepository.GetAll().Count();
             Assert.AreNotEqual(initalCount, removedCount);
         }
@@ -84,7 +83,7 @@ namespace StudentCourses.Test
         public void IsCourseRepositoryGetAllCorrectly()
         {
             var result = _courseRepository.GetAll();
-            Assert.AreEqual(result.Count(), 6);
+            Assert.AreEqual(result.Count(), 2);
         }
 
         [TestMethod]
@@ -92,22 +91,21 @@ namespace StudentCourses.Test
         {
             Course courseToAdd = new Course
             {
-                ID = 7,
-                Name = "Reactive Programming"
+                Name = "UnitTestAdded",
+                Vacancies = 20
             };
 
             _courseRepository.Add(courseToAdd);
-            //If course is inserted correctly rows number will be 7
             var result = _courseRepository.GetAll();
             var numberOfRecords = result.ToList().Count;
-            Assert.AreEqual(7, numberOfRecords);
+            Assert.AreEqual(numberOfRecords, 3);
         }
 
         [TestMethod]
         public void IsCourseRepositoryFindByIdCorrectly()
         {
-            var findObject = _courseRepository.FindById(4);
-            Assert.AreEqual(findObject.Name, "NET MVC");
+            var findObject = _courseRepository.FindById(1);
+            Assert.AreEqual(findObject.Name, "CourseTest1");
         }
 
         [TestMethod]
@@ -115,11 +113,11 @@ namespace StudentCourses.Test
         {
             Course courseToEdit = new Course
             {
-                ID = 1,
-                Name = "Canvas drawing"
+                ID = 2,
+                Name = "unitTestEdited"
             };
 
-            var result = _courseRepository.FindById(1);
+            var result = _courseRepository.FindById(2);
             _courseRepository.Edit(courseToEdit);
             Assert.AreEqual(courseToEdit.ID, result.ID);
         }
@@ -128,7 +126,7 @@ namespace StudentCourses.Test
         public void IsCourseRepositoryRemoveCorrectly()
         {
             var initalCount = _courseRepository.GetAll().Count();
-            _courseRepository.Remove(7);
+            _courseRepository.Remove(3);
             var removedCount = _courseRepository.GetAll().Count();
             Assert.AreNotEqual(initalCount, removedCount);
         }
