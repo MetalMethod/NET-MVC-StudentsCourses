@@ -8,19 +8,16 @@ namespace StudentCourses.Test
     [TestClass]
     public class RepositoriesTest
     {
-        private StudentRepository studentRepository;
-        private CourseRepository courseRepository;
-        private RegistrationRepository registrationRepository;
+        private StudentRepository _studentRepository;
+        private CourseRepository _courseRepository;
+        private RegistrationRepository _registrationRepository;
 
         [TestInitialize]
         public void TestSetup()
         {
-            //StudentCoursesDataInitializer database = new StudentCoursesDataInitializer();
-            //System.Data.Entity.Database.SetInitializer(database);
-
-            studentRepository = new StudentRepository();
-            courseRepository = new CourseRepository();
-            registrationRepository = new RegistrationRepository();
+            _studentRepository = new StudentRepository();
+            _courseRepository = new CourseRepository();
+            _registrationRepository = new RegistrationRepository();
         }
 
         // STUDENT REPOSITORY TESTS
@@ -28,20 +25,8 @@ namespace StudentCourses.Test
         [TestMethod]
         public void IsStudentRepositoryGetAllCorrectly()
         {
-            var result = studentRepository.GetAll();
+            var result = _studentRepository.GetAll();
             Assert.AreEqual(result.Count(), 8);
-        }
-
-        [TestMethod]
-        public void IsStudentRepositoryInitializedWithValidNumberOfData()
-        {
-            //Test if the database is correctly created
-            var result = studentRepository.GetAll();
-            Assert.IsNotNull(result);
-
-            //Test if numbers of initil records is correct
-            var numberOfRecords = result.ToList().Count;
-            Assert.AreEqual(8, numberOfRecords);
         }
 
         [TestMethod]
@@ -54,9 +39,9 @@ namespace StudentCourses.Test
                 LastName = "Harris"
             };
 
-            studentRepository.Add(studentToAdd);
+            _studentRepository.Add(studentToAdd);
             //If student is inserted correctly rows number will be 9
-            var result = studentRepository.GetAll();
+            var result = _studentRepository.GetAll();
             var numberOfRecords = result.ToList().Count;
             Assert.AreEqual(9, numberOfRecords);
         }
@@ -64,14 +49,14 @@ namespace StudentCourses.Test
         [TestMethod]
         public void IsStudentRepositoryFindByIdCorrectly()
         {
-            var findObject = studentRepository.FindById(2);
+            var findObject = _studentRepository.FindById(2);
             Assert.AreEqual(findObject.FirstName, "Paul");
         }
 
         [TestMethod]
         public void IsStudentRepositoryEditingStudent()
         {
-            var result = studentRepository.FindById(1);
+            var result = _studentRepository.FindById(1);
 
             Student studentToEdit = new Student
             {
@@ -80,16 +65,16 @@ namespace StudentCourses.Test
                 LastName = "Harris"
             };
 
-            studentRepository.Edit(studentToEdit);
+            _studentRepository.Edit(studentToEdit);
             Assert.AreEqual(studentToEdit.ID, result.ID);
         }
 
         [TestMethod]
         public void IsStudentRepositoryRemoveCorrectly()
         {
-            var initalCount = studentRepository.GetAll().Count();
-            studentRepository.Remove(9);
-            var removedCount = studentRepository.GetAll().Count();
+            var initalCount = _studentRepository.GetAll().Count();
+            _studentRepository.Remove(9);
+            var removedCount = _studentRepository.GetAll().Count();
             Assert.AreNotEqual(initalCount, removedCount);
         }
 
@@ -98,20 +83,8 @@ namespace StudentCourses.Test
         [TestMethod]
         public void IsCourseRepositoryGetAllCorrectly()
         {
-            var result = courseRepository.GetAll();
+            var result = _courseRepository.GetAll();
             Assert.AreEqual(result.Count(), 6);
-        }
-
-        [TestMethod]
-        public void IsCourseRepositoryInitializedWithValidNumberOfData()
-        {
-            // Test if the database is correctly created
-            var result = courseRepository.GetAll();
-            Assert.IsNotNull(result);
-
-            //Test if number of initial records is correct
-            var numberOfRecords = result.ToList().Count;
-            Assert.AreEqual(6, numberOfRecords);
         }
 
         [TestMethod]
@@ -123,9 +96,9 @@ namespace StudentCourses.Test
                 Name = "Reactive Programming"
             };
 
-            courseRepository.Add(courseToAdd);
+            _courseRepository.Add(courseToAdd);
             //If course is inserted correctly rows number will be 7
-            var result = courseRepository.GetAll();
+            var result = _courseRepository.GetAll();
             var numberOfRecords = result.ToList().Count;
             Assert.AreEqual(7, numberOfRecords);
         }
@@ -133,7 +106,7 @@ namespace StudentCourses.Test
         [TestMethod]
         public void IsCourseRepositoryFindByIdCorrectly()
         {
-            var findObject = courseRepository.FindById(4);
+            var findObject = _courseRepository.FindById(4);
             Assert.AreEqual(findObject.Name, "NET MVC");
         }
 
@@ -146,17 +119,17 @@ namespace StudentCourses.Test
                 Name = "Canvas drawing"
             };
 
-            var result = courseRepository.FindById(1);
-            courseRepository.Edit(courseToEdit);
+            var result = _courseRepository.FindById(1);
+            _courseRepository.Edit(courseToEdit);
             Assert.AreEqual(courseToEdit.ID, result.ID);
         }
 
         [TestMethod]
         public void IsCourseRepositoryRemoveCorrectly()
         {
-            var initalCount = courseRepository.GetAll().Count();
-            courseRepository.Remove(7);
-            var removedCount = courseRepository.GetAll().Count();
+            var initalCount = _courseRepository.GetAll().Count();
+            _courseRepository.Remove(7);
+            var removedCount = _courseRepository.GetAll().Count();
             Assert.AreNotEqual(initalCount, removedCount);
         }
 
@@ -165,20 +138,8 @@ namespace StudentCourses.Test
         [TestMethod]
         public void IsRegistrationRepositoryGetAllCorrectly()
         {
-            var result = registrationRepository.GetAll();
+            var result = _registrationRepository.GetAll();
             Assert.AreEqual(result.Count(), 2);
-        }
-
-        [TestMethod]
-        public void IsRegistrationRepositoryInitializedWithValidNumberOfData()
-        {
-            // Test if the database is correctly created
-            var result = registrationRepository.GetAll();
-            Assert.IsNotNull(result);
-
-            //Test if number of initial records is correct
-            var numberOfRecords = result.ToList().Count;
-            Assert.AreEqual(2, numberOfRecords);
         }
 
         [TestMethod]
@@ -191,9 +152,9 @@ namespace StudentCourses.Test
                 RegistrationKey = "3333cccc"
             };
 
-            registrationRepository.Add(registrationToAdd);
+            _registrationRepository.Add(registrationToAdd);
             //If course is inserted correctly rows number will be 3
-            var result = registrationRepository.GetAll();
+            var result = _registrationRepository.GetAll();
             var numberOfRecords = result.ToList().Count;
             Assert.AreEqual(3, numberOfRecords);
         }
@@ -201,7 +162,7 @@ namespace StudentCourses.Test
         [TestMethod]
         public void IsRegistrationRepositoryFindByIdCorrectly()
         {
-            var findObject = registrationRepository.FindById(2);
+            var findObject = _registrationRepository.FindById(2);
             Assert.AreEqual(findObject.RegistrationKey, "2222bbbb");
         }
 
@@ -216,17 +177,17 @@ namespace StudentCourses.Test
                 RegistrationKey = "editedKeyInTests"
             };
 
-            var result = registrationRepository.FindById(1);
-            registrationRepository.Edit(registrationToEdit);
+            var result = _registrationRepository.FindById(1);
+            _registrationRepository.Edit(registrationToEdit);
             Assert.AreEqual(registrationToEdit.ID, result.ID);
         }
 
         [TestMethod]
         public void IsRegistrationRepositoryRemoveCorrectly()
         {
-            var initalCount = registrationRepository.GetAll().Count();
-            registrationRepository.Remove(2);
-            var removedCount = registrationRepository.GetAll().Count();
+            var initalCount = _registrationRepository.GetAll().Count();
+            _registrationRepository.Remove(2);
+            var removedCount = _registrationRepository.GetAll().Count();
             Assert.AreNotEqual(initalCount, removedCount);
         }
     }

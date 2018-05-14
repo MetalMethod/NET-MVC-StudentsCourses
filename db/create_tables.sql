@@ -5,13 +5,13 @@ CREATE DATABASE StudentsCoursesDBfirst;
 USE StudentsCoursesDBfirst;
 
 CREATE TABLE Student (
-    ID int IDENTITY(1,1) PRIMARY KEY on delete cascade,
+    ID int IDENTITY(1,1) PRIMARY KEY,
 	FirstName varchar(30) NOT NULL,
     LastName varchar(30) NOT NULL
 );
 
 CREATE TABLE Course (
-    ID int IDENTITY(1,1) PRIMARY KEY on delete cascade,
+    ID int IDENTITY(1,1) PRIMARY KEY,
 	Name varchar(50) NOT NULL,
 	Vacancies int NOT NULL
 );
