@@ -23,19 +23,19 @@
 
             <div class="col-md-10 dropdown">
                 @{
-            List<SelectListItem> StudentNamelist = new List<SelectListItem>();
+                    List<SelectListItem> StudentNamelist = new List<SelectListItem>();
 
-            foreach (var item in Model.AvaliableStudents)
-            {
-                StudentNamelist.Add(new SelectListItem
-                {
-                    Text = item.FirstName.ToString() + " " + item.LastName.ToString(),
-                    Value = item.ID.ToString()
+                    foreach (var item in Model.AvaliableStudents)
+                    {
+                        StudentNamelist.Add(new SelectListItem
+                        {
+                            Text = item.FirstName.ToString() + " " + item.LastName.ToString(),
+                            Value = item.ID.ToString()
+                        }
+                        );
+                    }
                 }
-                );
-            }
-                }
-                @Html.DropDownListFor(model => model.StudentToRegister, StudentNamelist, "-- Select Student --", htmlAttributes: new { @class = "btn btn-primary col-md-10" })
+                @Html.DropDownListFor(model => model.RegistrationToEdit.Student_ID, StudentNamelist, "-- Select Student --", htmlAttributes: new { @class = "btn btn-primary col-md-10" })
             </div>
         </div>
 
@@ -44,29 +44,29 @@
 
             <div class="col-md-10">
                 @{
-            List<SelectListItem> CourseNamelist = new List<SelectListItem>();
+                    List<SelectListItem> CourseNamelist = new List<SelectListItem>();
 
-            foreach (var item in Model.AvaliableCourses)
-            {
-                CourseNamelist.Add(new SelectListItem
-                {
-                    Text = item.Name,
-                    Value = item.ID.ToString()
+                    foreach (var item in Model.AvaliableCourses)
+                    {
+                        CourseNamelist.Add(new SelectListItem
+                        {
+                            Text = item.Name,
+                            Value = item.ID.ToString()
+                        }
+                        );
+                    }
                 }
-                );
-            }
-                }
-                @Html.DropDownListFor(model => model.CourseToRegister, CourseNamelist, "-- Select Course --", htmlAttributes: new { @class = "btn btn-primary  col-md-10" })
+                @Html.DropDownListFor(model => model.RegistrationToEdit.Course_ID, CourseNamelist, "-- Select Course --", htmlAttributes: new { @class = "btn btn-primary  col-md-10" })
             </div>
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.RegistrationToEdit.RegistrationKey, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RegistrationToEdit.RegistrationKey, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RegistrationToEdit.RegistrationKey, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.RegistrationToEdit.RegistrationKey, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RegistrationToEdit.RegistrationKey, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RegistrationToEdit.RegistrationKey, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

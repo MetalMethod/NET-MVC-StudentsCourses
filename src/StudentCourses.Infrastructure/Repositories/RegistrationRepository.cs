@@ -58,15 +58,15 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <summary>
         /// Edits the specified registration.
         /// </summary>
-        /// <param name="course">The registration.</param>
+        /// <param name="Registration">The registration.</param>
         public void Edit(Registration registrationToEdit)
         {
-            var currentRegistration = FindById(registrationToEdit.ID);
+            RegistrationEntityModel currentRegistration = _context.Registrations.Find(registrationToEdit.ID);
 
-            var destinationModel = Mapping.Mapper.Map<RegistrationEntityModel>(currentRegistration);
-            var studentToEditMapped = Mapping.Mapper.Map<RegistrationRepository>(destinationModel);
+            var destinationModel = Mapping.Mapper.Map<RegistrationEntityModel>(registrationToEdit);
+            //var studentToEditMapped = Mapping.Mapper.Map<RegistrationRepository>(destinationModel);
 
-            _context.Entry(currentRegistration).CurrentValues.SetValues(registrationToEdit);
+            _context.Entry(currentRegistration).CurrentValues.SetValues(destinationModel);
             _context.SaveChanges();
         }
 

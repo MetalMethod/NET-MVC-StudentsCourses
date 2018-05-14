@@ -36,7 +36,7 @@ namespace StudentCourses.Test
             Student studentToAdd = new Student
             {
                 FirstName = "FirstNameUnitTestAdded",
-                LastName = "lastNameUnitTestAdded"
+                LastName = "LastNameUnitTestAdded"
             };
 
             _studentRepository.Add(studentToAdd);
@@ -114,7 +114,8 @@ namespace StudentCourses.Test
             Course courseToEdit = new Course
             {
                 ID = 2,
-                Name = "unitTestEdited"
+                Name = "UnitTestEdited",
+                Vacancies = 5
             };
 
             var result = _courseRepository.FindById(2);
@@ -147,37 +148,46 @@ namespace StudentCourses.Test
             {
                 Student_ID = 1,
                 Course_ID = 1,
-                RegistrationKey = "3333cccc"
+                RegistrationKey = "2222test"
             };
 
             _registrationRepository.Add(registrationToAdd);
-            //If course is inserted correctly rows number will be 3
             var result = _registrationRepository.GetAll();
             var numberOfRecords = result.ToList().Count;
-            Assert.AreEqual(3, numberOfRecords);
+            Assert.AreEqual(numberOfRecords, 3);
         }
 
         [TestMethod]
         public void IsRegistrationRepositoryFindByIdCorrectly()
         {
-            var findObject = _registrationRepository.FindById(2);
-            Assert.AreEqual(findObject.RegistrationKey, "2222bbbb");
+            var findObject = _registrationRepository.FindById(1);
+            Assert.AreEqual(findObject.RegistrationKey, "0000aaaa");
         }
 
         [TestMethod]
         public void IsRegistrationRepositoryEditingRegistration()
         {
-            Registration registrationToEdit = new Registration
-            {
-                ID = 1,
-                Student_ID = 4,
-                Course_ID = 4,
-                RegistrationKey = "editedKeyInTests"
-            };
+            //Registration registrationToEdit = new Registration
+            //{
+            //    ID = 1,
+            //    Student_ID = 1,
+            //    Course_ID = 1,
+            //    RegistrationKey = "3333cccc",
+            //    Course = {
+            //        ID = 1,
+            //        Name = " ",
+            //        Vacancies = 1
+            //    },
+            //    Student = {
+            //        ID = 1,
+            //        FirstName = " ",
+            //        LastName = " "
+            //    }
+            //};
 
             var result = _registrationRepository.FindById(1);
-            _registrationRepository.Edit(registrationToEdit);
-            Assert.AreEqual(registrationToEdit.ID, result.ID);
+            _registrationRepository.Edit(result);
+            Assert.AreEqual(result.ID, 1);
         }
 
         [TestMethod]

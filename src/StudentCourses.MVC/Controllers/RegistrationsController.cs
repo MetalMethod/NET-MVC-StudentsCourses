@@ -149,15 +149,26 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID, StudentId, CourseId")] Registration registration)
+        public ActionResult Edit([Bind(Include = "RegistrationToEdit")] RegistrationViewModel registrationViewModel)
         {
             if (ModelState.IsValid)
             {
-                registration.RegistrationKey = _hashGenerator.Generate(registration.Student,registration.Course);
-                _registrationRepository.Edit(registration);
+                var registrationToEdit = registrationViewModel.RegistrationToEdit;
+                //registrationToEdit.Student_ID = registrationViewModel.RegistrationToEdit.Student_ID;
+                //registrationToEdit.Course_ID = registrationViewModel.RegistrationToEdit.Course_ID;
+
+                registrationToEdit.Student = _studentRepository.FindById(registrationToEdit.Student_ID);
+                registrationToEdit.Course = _courseRepository.FindById(registrationToEdit.Course_ID);
+
+                //registration.Student_ID = registrationViewModel.RegistrationToEdit.Student_ID;
+                //registration.Course_ID = registrationViewModel.RegistrationToEdit.Course_ID;
+
+                registrationToEdit.RegistrationKey = _hashGenerator.Generate(registrationToEdit.Student, registrationToEdit.Course);
+
+                _registrationRepository.Edit(registrationToEdit);
                 return RedirectToAction("Index");
             }
-            return View(registration);
+            return View("Index");
         }
 
         /// GET: Registrations/Delete/Id

@@ -46,3 +46,9 @@ VALUES ('CourseTest1', 10)
 
 INSERT INTO Course(Name, Vacancies)
 VALUES ('CourseTest2', 15)
+
+INSERT INTO Registration(Student_ID, Course_ID, RegistrationKey)
+VALUES(1,1,'0000aaaa')
+
+INSERT INTO Registration(Student_ID, Course_ID, RegistrationKey)
+VALUES(1,1,'0000aaaa')
