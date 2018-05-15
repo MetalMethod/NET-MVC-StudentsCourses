@@ -61,8 +61,6 @@ namespace StudentCourses.MVC.Controllers
         /// GET: Registrations
         public ActionResult Index()
         {
-            //registrationViewModel.AvaliableStudents = _studentRepository.GetAll().ToList();
-            //registrationViewModel.AvaliableCourses = _courseRepository.GetAll().ToList();
             registrationViewModel.CurrentRegistrations = _registrationRepository.GetAll().ToList();
   
             return View(registrationViewModel);
@@ -153,15 +151,12 @@ namespace StudentCourses.MVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var ID = registrationViewModel.RegistrationToEdit.ID;
-                var registrationToEdit = _registrationRepository.FindById(ID);
+                var registrationToEdit = _registrationRepository.FindById(registrationViewModel.RegistrationToEdit.ID);
 
                 registrationToEdit.Student_ID = registrationViewModel.RegistrationToEdit.Student_ID;
                 registrationToEdit.Course_ID = registrationViewModel.RegistrationToEdit.Course_ID;
-
                 registrationToEdit.Student = _studentRepository.FindById(registrationViewModel.RegistrationToEdit.Student_ID);
                 registrationToEdit.Course = _courseRepository.FindById(registrationViewModel.RegistrationToEdit.Course_ID);
-                
                 registrationToEdit.RegistrationKey = _hashGenerator.Generate(registrationToEdit.Student, registrationToEdit.Course);
 
                 _registrationRepository.Edit(registrationToEdit);

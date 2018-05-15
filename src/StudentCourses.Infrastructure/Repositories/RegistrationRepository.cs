@@ -64,9 +64,7 @@ namespace StudentCourses.Infrastructure.Repositories
             RegistrationEntityModel currentRegistration = _context.Registrations.Find(registrationToEdit.ID);
 
             var destinationModel = Mapping.Mapper.Map<RegistrationEntityModel>(registrationToEdit);
-            //var studentToEditMapped = Mapping.Mapper.Map<RegistrationRepository>(destinationModel);
 
-            //_context.Entry(currentRegistration).CurrentValues.SetValues(destinationModel);
             Remove(currentRegistration.ID);
             Add(registrationToEdit);
             _context.SaveChanges();
