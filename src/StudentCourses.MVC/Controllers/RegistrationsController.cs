@@ -149,23 +149,23 @@ namespace StudentCourses.MVC.Controllers
         /// more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RegistrationToEdit")] RegistrationViewModel registrationViewModel)
+        public ActionResult Edit([Bind(Include = "RegistrationToEdit, RegistrationToEdit.ID, RegistrationToEdit.Student_ID, RegistrationToEdit.Course_ID")] RegistrationViewModel registrationViewModel)
         {
             if (ModelState.IsValid)
             {
-                var registrationToEdit = registrationViewModel.RegistrationToEdit;
-                //registrationToEdit.Student_ID = registrationViewModel.RegistrationToEdit.Student_ID;
-                //registrationToEdit.Course_ID = registrationViewModel.RegistrationToEdit.Course_ID;
+                var ID = registrationViewModel.RegistrationToEdit.ID;
+                var registrationToEdit = _registrationRepository.FindById(ID);
 
-                registrationToEdit.Student = _studentRepository.FindById(registrationToEdit.Student_ID);
-                registrationToEdit.Course = _courseRepository.FindById(registrationToEdit.Course_ID);
+                registrationToEdit.Student_ID = registrationViewModel.RegistrationToEdit.Student_ID;
+                registrationToEdit.Course_ID = registrationViewModel.RegistrationToEdit.Course_ID;
 
-                //registration.Student_ID = registrationViewModel.RegistrationToEdit.Student_ID;
-                //registration.Course_ID = registrationViewModel.RegistrationToEdit.Course_ID;
-
+                registrationToEdit.Student = _studentRepository.FindById(registrationViewModel.RegistrationToEdit.Student_ID);
+                registrationToEdit.Course = _courseRepository.FindById(registrationViewModel.RegistrationToEdit.Course_ID);
+                
                 registrationToEdit.RegistrationKey = _hashGenerator.Generate(registrationToEdit.Student, registrationToEdit.Course);
 
                 _registrationRepository.Edit(registrationToEdit);
+
                 return RedirectToAction("Index");
             }
             return View("Index");

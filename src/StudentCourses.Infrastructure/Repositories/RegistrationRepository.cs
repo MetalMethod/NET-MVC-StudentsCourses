@@ -66,7 +66,9 @@ namespace StudentCourses.Infrastructure.Repositories
             var destinationModel = Mapping.Mapper.Map<RegistrationEntityModel>(registrationToEdit);
             //var studentToEditMapped = Mapping.Mapper.Map<RegistrationRepository>(destinationModel);
 
-            _context.Entry(currentRegistration).CurrentValues.SetValues(destinationModel);
+            //_context.Entry(currentRegistration).CurrentValues.SetValues(destinationModel);
+            Remove(currentRegistration.ID);
+            Add(registrationToEdit);
             _context.SaveChanges();
         }
 
