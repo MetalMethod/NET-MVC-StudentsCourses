@@ -30,7 +30,7 @@ namespace StudentCourses.Infrastructure.Exceptions
         /// <param name="message">The message.</param>
         /// <param name="ID">The identifier.</param>
         /// <param name="exception">The exception.</param>
-        public RepositoryUpdateElementException(T model, int ID, string message, Exception exception) : base("Model:  " + model.ToString() + ", message: " + message, exception) { }
+        public RepositoryUpdateElementException(T model, int ID, Exception exception, string message) : base("Model:  " + model.ToString() + ", message: " + message, exception) { }
 
     }
 }

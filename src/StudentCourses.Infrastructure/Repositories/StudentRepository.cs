@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using StudentCourses.Domain.Interfaces;
 using StudentCourses.Domain.Models;
 using StudentCourses.Infrastructure.EntityModel;
 using StudentCourses.Infrastructure.AutoMapper;
+using StudentCourses.Infrastructure.Exceptions;
 
 namespace StudentCourses.Infrastructure.Repositories
 {
@@ -32,10 +34,17 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="student">The student.</param>
         public void Add(Student student)
         {
-            var destinationModel = Mapping.Mapper.Map<StudentEntityModel>(student);
+            StudentEntityModel destinationModel = Mapping.Mapper.Map<StudentEntityModel>(student);
 
-            _context.Students.Add(destinationModel);
-            _context.SaveChanges();
+            try
+            {
+                _context.Students.Add(destinationModel);
+                _context.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                throw new RepositoryAddElementException<Student>(student, exception, "Could not add element in Student Repository.");
+            }
         }
 
         /// <summary>
@@ -44,12 +53,27 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="student">The student.</param>
         public void Edit(Student studentToEdit)
         {
-            var currentStudent = _context.Students.Find(studentToEdit.ID);
-            
-            var studentToEditMapped = Mapping.Mapper.Map<StudentEntityModel>(studentToEdit);
+            StudentEntityModel currentStudent;
+            StudentEntityModel studentToEditMapped = Mapping.Mapper.Map<StudentEntityModel>(studentToEdit);
 
-            _context.Entry(currentStudent).CurrentValues.SetValues(studentToEditMapped);
-            _context.SaveChanges();
+            try
+            {
+                currentStudent = _context.Students.Find(studentToEdit.ID);
+            }
+            catch (Exception exception)
+            {
+                throw new RepositoryElementNotFoundByIdException<Student>(studentToEdit, studentToEdit.ID, exception, "Student to edit not found by Id");
+            }
+
+            try
+            {
+                _context.Entry(currentStudent).CurrentValues.SetValues(studentToEditMapped);
+                _context.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                throw new RepositoryUpdateElementException<Student>(studentToEdit, studentToEdit.ID, exception, "Could not update Student. ");
+            }
         }
 
         /// <summary>
@@ -58,8 +82,15 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public void Remove(int Id)
         {
-            _context.Students.Remove(_context.Students.Find(Id));
-            _context.SaveChanges();
+            try
+            {
+                _context.Students.Remove(_context.Students.Find(Id));
+                _context.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+                throw new RepositoryRemoveElementException<Student>(Id, exception, "Could not remove the Student.");
+            }
         }
 
         /// <summary>
@@ -67,10 +98,7 @@ namespace StudentCourses.Infrastructure.Repositories
         /// </summary>
         public IEnumerable<Student> GetAll()
         {
-            var std = _context.Students.ToList();
-            var result =  Mapping.Mapper.Map<ICollection<StudentEntityModel>, ICollection<Student>>(std);
-
-            return result;
+            return Mapping.Mapper.Map<ICollection<StudentEntityModel>, ICollection<Student>>(_context.Students.ToList());
         }
 
         /// <summary>
@@ -79,7 +107,6 @@ namespace StudentCourses.Infrastructure.Repositories
         /// <param name="Id">The identifier.</param>
         public Student FindById(int Id)
         {
-            //var result = (from item in _context.Students where item.ID == Id select item).FirstOrDefault();
             return Mapping.Mapper.Map<StudentEntityModel, Student>(_context.Students.Find(Id));
         }
     }

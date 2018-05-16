@@ -8,29 +8,29 @@ namespace StudentCourses.Infrastructure.Exceptions
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <seealso cref="StudentCourses.Infrastructure.Exceptions.RepositoryException" />
-    class RepositoryRemoveElementException<T> : RepositoryException where T : IDomainModel
+    class RepositoryElementNotFoundByIdException<T> : RepositoryException where T : IDomainModel
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepositoryRemoveElementException{T}"/> class.
+        /// Initializes a new instance of the <see cref="RepositoryElementNotFoundByIdException{T}"/> class.
         /// </summary>
-        public RepositoryRemoveElementException() { }
+        public RepositoryElementNotFoundByIdException() { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepositoryRemoveElementException{T}"/> class.
+        /// Initializes a new instance of the <see cref="RepositoryElementNotFoundByIdException{T}"/> class.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="ID">The identifier.</param>
         /// <param name="message">The message.</param>
-        public RepositoryRemoveElementException(T model, int ID, string message) : base("Model:  " + model.ToString() +  ", message: " + message){ }
+        public RepositoryElementNotFoundByIdException(T model, int ID, string message) : base("Model:  " + model.ToString() +  ", message: " + message){ }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RepositoryRemoveElementException{T}"/> class.
+        /// Initializes a new instance of the <see cref="RepositoryElementNotFoundByIdException{T}"/> class.
         /// </summary>
         /// <param name="model">The model.</param>
         /// <param name="message">The message.</param>
         /// <param name="ID">The identifier.</param>
         /// <param name="exception">The exception.</param>
-        public RepositoryRemoveElementException( int ID,  Exception exception, string message) : base( "Message: " + message, exception) { }
+        public RepositoryElementNotFoundByIdException(T model, int ID, Exception exception, string message) : base("Model:  " + model.ToString() + ", message: " + message, exception) { }
 
     }
 }

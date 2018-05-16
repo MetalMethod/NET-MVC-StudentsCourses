@@ -77,6 +77,11 @@
     <Compile Include="EntityModel\StudentEntityModel.cs">
       <DependentUpon>EntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\RepositoryElementNotFoundByIdException.cs" />
+    <Compile Include="Exceptions\RepositoryUpdateElementException.cs" />
+    <Compile Include="Exceptions\RepositoryRemoveElementException.cs" />
+    <Compile Include="Exceptions\RepositoryAddElementException.cs" />
+    <Compile Include="Exceptions\RepositoryException.cs" />
     <Compile Include="HashGenerator\HashGenerator.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
